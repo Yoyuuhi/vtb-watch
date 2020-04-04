@@ -5,6 +5,7 @@
 |email|string|null: false, unique: true|
 |password|integer|null: false|
 |name|string|null: false, unique: true|
+|icon|text||
 ### Association
 - has_many :mylists
 
@@ -12,6 +13,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false, unique: true|
+|cover|text||
 |user_id|integer|null: false, foreign_key: true|
 ### Association
 - has_many :vtubers, through: :mylists_vtubers
