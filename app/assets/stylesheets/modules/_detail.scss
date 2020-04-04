@@ -1,0 +1,30 @@
+.detail {
+  background-color: white;
+  width: 100vw;
+  height: calc(100% - 100px);
+  padding-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  .--box {
+    margin-left: 50px;
+    margin-bottom: 50px;
+    width: 250px;
+    height: 250px;
+    border: outset 3px #DFE6F0;
+    background-color: #DFE6F0;
+    .__image {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .__name {
+      margin-left: 10px;
+    }
+    .__number {
+      margin-left: 10px;
+    }
+  }
+}
+
+.image {
+  width: 230px;
+}
