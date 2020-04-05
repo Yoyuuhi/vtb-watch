@@ -7,6 +7,7 @@
         = current_user.name
     .headbar--right__logout
       = link_to destroy_user_session_path, method: :delete, class: 'log_out' do
-        = icon('fas', 'sign-out-alt', class: 'logout-icon')
         ログアウト
+        = icon('fas', 'sign-out-alt', class: 'logout-icon')
+        
         

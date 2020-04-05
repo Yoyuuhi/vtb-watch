@@ -12,11 +12,11 @@
 ## mylistsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, unique: true|
+|name|string|null: false|
 |cover|text||
-|user_id|integer|null: false, foreign_key: true|
+|user_id|integer|foreign_key: true|
 ### Association
-- has_many :vtubers, through: :mylists_vtubers
+- has_many :vtubers, through: :mylist_vtubers
 - has_many :mylists_vtubers
 - belongs_to :user
 
@@ -25,10 +25,10 @@
 |------|----|-------|
 |name|string|null: false, unique: true|
 |twitter|string|null: false, unique: true|
-|company_id|integer|null: false, foreign_key: true|
+|company_id|integer|foreign_key: true|
 |channel|string|null: false, unique: true|
 ### Association
-- has_many :mylists, through: :mylists_vtubers
+- has_many :mylists, through: :mylist_vtubers
 - has_many :mylists_vtubers
 - belongs_to :company
 - has_many :videos
@@ -36,8 +36,8 @@
 ## mylists_vtubersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|mylist_id|integer|null: false, foreign_key: true|
-|vtuber_id|integer|null: false, foreign_key: true|
+|mylist_id|integer|foreign_key: true|
+|vtuber_id|integer|foreign_key: true|
 ### Association
 - belongs_to :mylist
 - belongs_to :vtuber
@@ -47,7 +47,7 @@
 |------|----|-------|
 |name|string|null: false, unique: true|
 |time|datetime|null: false, unique: true|
-|vtuber_id|integer|null: false, foreign_key: true|
+|vtuber_id|integer|foreign_key: true|
 ### Association
 - belongs_to :vtuber
 
