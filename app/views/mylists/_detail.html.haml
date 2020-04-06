@@ -1,72 +1,13 @@
 .detail
-  .--box
-    .__image
-      = image_tag 'https://www.pakutaso.com/shared/img/thumb/mitte222DSCN7817_TP_V.jpg', class: 'image'
-    .__name
-      mylist 1
-    .__number
-      vtuber 6人
-  .--box
-    .__image
-      = image_tag 'https://www.pakutaso.com/shared/img/thumb/mitte222DSCN7817_TP_V.jpg', class: 'image'
-    .__name
-      mylist 1
-    .__number
-      vtuber 6人
-  .--box
-    .__image
-      = image_tag 'https://www.pakutaso.com/shared/img/thumb/mitte222DSCN7817_TP_V.jpg', class: 'image'
-    .__name
-      mylist 1
-    .__number
-      vtuber 6人
-
-  .--box
-    .__image
-      = image_tag 'https://www.pakutaso.com/shared/img/thumb/mitte222DSCN7817_TP_V.jpg', class: 'image'
-    .__name
-      mylist 1
-    .__number
-      vtuber 6人
-  .--box
-    .__image
-      = image_tag 'https://www.pakutaso.com/shared/img/thumb/mitte222DSCN7817_TP_V.jpg', class: 'image'
-    .__name
-      mylist 1
-    .__number
-      vtuber 6人
-  .--box
-    .__image
-      = image_tag 'https://www.pakutaso.com/shared/img/thumb/mitte222DSCN7817_TP_V.jpg', class: 'image'
-    .__name
-      mylist 1
-    .__number
-      vtuber 6人
-  .--box
-    .__image
-      = image_tag 'https://www.pakutaso.com/shared/img/thumb/mitte222DSCN7817_TP_V.jpg', class: 'image'
-    .__name
-      mylist 1
-    .__number
-      vtuber 6人
-  .--box
-    .__image
-      = image_tag 'https://www.pakutaso.com/shared/img/thumb/mitte222DSCN7817_TP_V.jpg', class: 'image'
-    .__name
-      mylist 1
-    .__number
-      vtuber 6人
-  .--box
-    .__image
-      = image_tag 'https://www.pakutaso.com/shared/img/thumb/mitte222DSCN7817_TP_V.jpg', class: 'image'
-    .__name
-      mylist 1
-    .__number
-      vtuber 6人
-  .--box
-    .__image
-      = image_tag 'https://www.pakutaso.com/shared/img/thumb/mitte222DSCN7817_TP_V.jpg', class: 'image'
-    .__name
-      mylist 1
-    .__number
-      vtuber 6人
+  - current_user.mylists.each do |mylist|
+    .--box
+      = link_to '#' do
+        .__image
+          -if mylist.cover.length == 0
+            = icon('fas', 'exclamation-circle', class: 'image')
+          -else
+            = image_tag mylist.cover.to_s, class: 'image'
+        .__name
+          = mylist.name
+        .__number
+          #{mylist.vtubers.length}名vtuber
