@@ -28,6 +28,10 @@ class MylistsController < ApplicationController
     end
   end
 
+  def show
+    @mylist = Mylist.find(params[:id])
+  end
+
   private
   def mylist_params
     params.require(:mylist).permit(:name, vtuber_ids: []).merge(user_id: current_user.id)

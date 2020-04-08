@@ -1,7 +1,7 @@
 .detail
   - current_user.mylists.each do |mylist|
     .--box
-      = link_to '#' do
+      = link_to user_mylist_path(current_user, mylist.id) do
         .__image
           -if mylist.cover.length == 0
             = icon('fas', 'exclamation-circle', class: 'image')
