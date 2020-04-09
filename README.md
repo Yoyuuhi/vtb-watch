@@ -45,8 +45,11 @@
 ## videosテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, unique: true|
-|time|datetime|null: false, unique: true|
+|videoId|string||
+|name|string|null: false|
+|scheduledStartTime|datetime||
+|actualStartTime|datetime||
+|actualEndTime|datetime||
 |vtuber_id|integer|foreign_key: true|
 ### Association
 - belongs_to :vtuber

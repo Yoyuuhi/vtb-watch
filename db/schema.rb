@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200405122134) do
+ActiveRecord::Schema.define(version: 20200409142812) do
 
   create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -52,13 +52,27 @@ ActiveRecord::Schema.define(version: 20200405122134) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "videos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "videoId",            null: false
+    t.string   "name"
+    t.datetime "scheduledStartTime"
+    t.datetime "actualStartTime"
+    t.datetime "actualEndTime"
+    t.integer  "vtuber_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["vtuber_id"], name: "index_videos_on_vtuber_id", using: :btree
+  end
+
   create_table "vtubers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",       null: false
-    t.string   "twitter",    null: false
+    t.string   "name",                     null: false
+    t.string   "twitter",                  null: false
     t.integer  "company_id"
-    t.string   "channel",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "channel",                  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "icon",       limit: 65535
+    t.text     "banner",     limit: 65535
     t.index ["channel"], name: "index_vtubers_on_channel", unique: true, using: :btree
     t.index ["company_id"], name: "index_vtubers_on_company_id", using: :btree
     t.index ["name"], name: "index_vtubers_on_name", unique: true, using: :btree
@@ -68,5 +82,6 @@ ActiveRecord::Schema.define(version: 20200405122134) do
   add_foreign_key "mylist_vtubers", "mylists"
   add_foreign_key "mylist_vtubers", "vtubers"
   add_foreign_key "mylists", "users"
+  add_foreign_key "videos", "vtubers"
   add_foreign_key "vtubers", "companies"
 end
