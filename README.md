@@ -1,3 +1,6 @@
+# 注意：動画タイトル一部絵文字があるためMySQL対応しないといけない
+## ALTER TABLE テーブル名 MODIFY カラム名 型 CHARACTER SET utf8mb4
+
 # DB設計
 ## usersテーブル
 |Column|Type|Options|

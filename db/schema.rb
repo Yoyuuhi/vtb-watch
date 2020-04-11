@@ -12,14 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20200409142812) do
 
-  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_companies_on_name", unique: true, using: :btree
   end
 
-  create_table "mylist_vtubers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "mylist_vtubers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "mylist_id"
     t.integer  "vtuber_id"
     t.datetime "created_at", null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20200409142812) do
     t.index ["vtuber_id"], name: "index_mylist_vtubers_on_vtuber_id", using: :btree
   end
 
-  create_table "mylists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "mylists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name",                     null: false
     t.text     "cover",      limit: 65535
     t.integer  "user_id"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20200409142812) do
     t.index ["user_id"], name: "index_mylists_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name",                                null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -52,9 +52,10 @@ ActiveRecord::Schema.define(version: 20200409142812) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "videos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "videos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "videoId",            null: false
     t.string   "name"
+    t.datetime "publishedAt"
     t.datetime "scheduledStartTime"
     t.datetime "actualStartTime"
     t.datetime "actualEndTime"
@@ -64,15 +65,16 @@ ActiveRecord::Schema.define(version: 20200409142812) do
     t.index ["vtuber_id"], name: "index_videos_on_vtuber_id", using: :btree
   end
 
-  create_table "vtubers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                     null: false
-    t.string   "twitter",                  null: false
+  create_table "vtubers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string   "name",                       null: false
+    t.string   "twitter",                    null: false
     t.integer  "company_id"
-    t.string   "channel",                  null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.text     "icon",       limit: 65535
-    t.text     "banner",     limit: 65535
+    t.string   "channel",                    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.text     "icon",         limit: 65535
+    t.text     "banner",       limit: 65535
+    t.string   "channelTitle"
     t.index ["channel"], name: "index_vtubers_on_channel", unique: true, using: :btree
     t.index ["company_id"], name: "index_vtubers_on_company_id", using: :btree
     t.index ["name"], name: "index_vtubers_on_name", unique: true, using: :btree

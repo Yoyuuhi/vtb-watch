@@ -3,6 +3,7 @@ class CreateVideos < ActiveRecord::Migration[5.0]
     create_table :videos do |t|
       t.string :videoId, null: false
       t.string :name
+      t.datetime :publishedAt
       t.datetime :scheduledStartTime
       t.datetime :actualStartTime
       t.datetime :actualEndTime
