@@ -18,3 +18,5 @@
 
 public/uploads/*
 config/secrets.yml
+log/crontab.log
+/.env

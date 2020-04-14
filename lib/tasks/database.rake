@@ -1,19 +1,20 @@
 namespace :database do
   desc "videosをメインとしたデータベース更新"
-  key = ENV["YOUTUBE_API_KEY"]
+
+  # .envファイルを作って環境変数を定義する必要がある
+  key = ENV["YOUTUBE_API_KEY"] 
+  
   url_temp = "https://www.googleapis.com/youtube/v3"
   task :update => :environment do
-    puts 'successed!'
-
-  # videoテーブルをクリアする
+    # videoテーブルをクリアする
     Video.all.each do |video|
       video.delete
     end
 
-  # Vtuberテーブル関連
+    # Vtuberテーブル関連
     Vtuber.all.each do |vtuber|
       kind = "channels"
-    # チャンネルアイコン情報の取得
+      # チャンネルアイコン情報の取得
       part = "snippet"
       url = URI.parse("#{url_temp}/#{kind}?part=#{part}&id=#{vtuber.channel}&key=#{key}")
       # APIを叩く
@@ -25,7 +26,7 @@ namespace :database do
       
       # アイコンのリンク先を保存
       vtuber.icon = hash['items'][0]['snippet']['thumbnails']['medium']['url']
-    # チャンネルバナー情報の取得
+      # チャンネルバナー情報の取得
       part = "brandingSettings"
       url = URI.parse("#{url_temp}/#{kind}?part=#{part}&id=#{vtuber.channel}&key=#{key}")
       # APIを叩く
@@ -38,7 +39,7 @@ namespace :database do
       # バナーのリンク先を保存
       vtuber.banner = hash['items'][0]['brandingSettings']['image']['bannerImageUrl']
 
-    # チャンネル最新動画情報の取得
+      # チャンネル最新動画情報の取得
       kind = "search"
       part = "snippet"
       maxResults = "10"
@@ -68,9 +69,9 @@ namespace :database do
 
 
   
-# 生放送情報の取得
-  kind = "videos"
-  part = "liveStreamingDetails"
+    # 生放送情報の取得
+    kind = "videos"
+    part = "liveStreamingDetails"
     Video.all.each do |video|
       url = URI.parse("#{url_temp}/#{kind}?part=#{part}&id=#{video.videoId}&key=#{key}")
       # APIを叩く
@@ -88,5 +89,6 @@ namespace :database do
       end
       video.save
     end
+    puts successed!
   end
 end
