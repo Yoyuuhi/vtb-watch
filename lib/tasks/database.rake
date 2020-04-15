@@ -89,6 +89,6 @@ namespace :database do
       end
       video.save
     end
-    puts successed!
+    puts "successed!"
   end
 end

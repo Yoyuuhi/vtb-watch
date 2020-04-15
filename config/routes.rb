@@ -8,4 +8,5 @@ Rails.application.routes.draw do
       resources :vtubers, only: [:show]
     end
   end
+  resources :vtubers, only: [:new, :create, :edit, :update]
 end
