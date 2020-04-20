@@ -1,13 +1,23 @@
 .detail
-  - current_user.mylists.each do |mylist|
-    .--box
-      = link_to user_mylist_path(current_user, mylist.id) do
-        .__image
-          -if mylist.cover.length == 0
-            = icon('fas', 'exclamation-circle', class: 'image')
-          -else
-            = image_tag mylist.cover.to_s, class: 'image'
-        .__name
-          = mylist.name
-        .__number
-          #{mylist.vtubers.length}名vtuber
+  - @mylists.each do |mylist|
+    = link_to user_mylists_path(current_user, mylist.id) do
+      .detail--box{ "data-mylist-id": "#{mylist.id}" }
+        .detail--box__top
+          .mylist-cover
+            = icon('fas', 'bars', class: 'cover_icon')
+            最新動画
+          .detail--box__top__image
+            = image_tag(src= "#{mylist.vtubers.first.icon}", class: "image")
+          .detail--box__top__right
+            .detail--box__top__right__vtuber-info
+              #{mylist.vtubers.length}名
+              %br
+              vtuber
+            .detail--box__top__right__icon
+              = icon('fas', 'bars', class: 'num_icon')
+        .detail--box__bottom
+          .detail--box__bottom__name
+            = mylist.name
+          .detail--box__bottom__date
+            Last updated:
+            = mylist.updated_at.strftime("%Y.%m.%d %H:%M")

@@ -1,6 +1,6 @@
 class VtubersController < ApplicationController
   before_action :set_company
-  
+
   def show
     @mylist = Mylist.find(params[:mylist_id])
   end
@@ -28,6 +28,17 @@ class VtubersController < ApplicationController
       redirect_to root_path, notice: 'vtuber情報を更新しました'
     else
       render :update
+    end
+  end
+
+  def index
+    return nil if params[:keyword] == ""
+    @CompanyId = Company.where('name LIKE :KEY', KEY: "%#{params[:keyword]}%").ids
+    @vtubers = Vtuber.includes(:company).where('(name LIKE ?) OR (twitter LIKE ?) OR (company_id = ?)', "%#{params[:keyword]}%", "%#{params[:keyword]}%", @CompanyId).limit(10)
+    return @vtubers
+    respond_to do |format|
+      format.html
+      format.json
     end
   end
 

@@ -1,11 +1,12 @@
 .headbar {
   width: 100vw;
-  height: 100px;
-  background-color: #009CDE;
+  height: 60px;
+  background-color: #FFFFFF;
   display: flex;
   align-items: center;
   padding-left: 50px;
   justify-content: space-between;
+  border-bottom: inset 3px;
   &--right {
     display: flex;
     align-items: center;
@@ -13,13 +14,13 @@
 }
 
 .menu_icon_right {
-  font-size: 2em;
-  color: white;
+  font-size: 1.5em;
+  color: #787878;
 }
 
 .user_name {
   text-decoration: none;
-  color: white;
+  color: #787878;
 }
 
 .log_out {
@@ -28,9 +29,11 @@
   color: white;
   display: flex;
   align-items: center;
+  color: #787878;
 }
 
 .logout-icon {
-  font-size: 2em;
+  font-size: 1.5em;
   margin-left: 10px;
+  color: #787878;
 }

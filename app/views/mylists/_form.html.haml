@@ -5,18 +5,27 @@
       %li nameを入力してください
   .mylist-form__field
     .mylist-form__field--left
-      = f.label :name, class: 'mylist-form__label'
+      %label.mylist-form__label{:for => "mylist_vtuberを追加"} vtuberを追加
     .mylist-form__field--right
-      = f.text_field :name, class: 'mylist_name mylist-form__input', placeholder: 'マイリスト名を入力してください'
-  .mylist-form__field.clearfix
-    / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
+      .mylist-form__search.clearfix
+        %input#mylist-form__input{:placeholder => "追加したいvtuber情報（名前、Twitter、会社名）を入力してください", :type => "text"}/
+      #vtuber-search-result
+
   .mylist-form__field.clearfix
     .mylist-form__field--left
       %label.mylist-form__label{:for => "mylist_vtuber"} vtuber
     .mylist-form__field--right
-      / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
-      = f.collection_check_boxes :vtuber_ids, Vtuber.all, :id, :name
-      / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
+      #mylist-vtubers.js-add-vtuber
+      
+  -# .mylist-form__field.clearfix
+  -#   .mylist-form__field--left
+  -#     %label.mylist-form__label{:for => "mylist_vtuber"} vtuber
+  -#   .mylist-form__field--right
+  -#     / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
+  -#     = f.collection_check_boxes :vtuber_ids, Vtuber.all, :id, :name
+  -#     / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
+
+
   .mylist-form__field.clearfix
     .mylist-form__field--left
     .mylist-form__field--right

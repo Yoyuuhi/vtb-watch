@@ -1,5 +1,6 @@
 class MylistsController < ApplicationController
   def index
+    @mylists = current_user.mylists.includes(:vtubers)
   end
 
   def new
