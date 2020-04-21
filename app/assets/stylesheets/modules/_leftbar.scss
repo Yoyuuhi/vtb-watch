@@ -1,0 +1,62 @@
+.mylist-index-body {
+  display: flex;
+}
+
+.leftbar {
+  height: calc(100% - 100px);
+  background-color: white;
+  width: 80px;
+  text-align: center;
+}
+
+.leftbar--section {
+  padding: 10px 0;
+  &--icon {
+    font-size: 1.1em;
+    text-decoration: none;
+    color: #787878;
+  }
+  &--text {
+    font-size: 12px;
+    text-decoration: none;
+    color: #787878;
+  }
+}
+
+.leftbar-detail {
+  width: 250px;
+  height: calc(100% - 100px);
+  display:none;
+  float:left;
+  &--section {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: #808080;
+  }
+  &--text {
+    color: #808080;
+  }
+}
+
+.leftbar--menu--icon {
+  margin-right: 20px;
+  color: #808080;
+  font-size: 1.3em;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+}
+
+.links-mylist {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  margin-right: 10px;
+  white-space: nowrap; /* 横幅のMAXに達しても改行しない */
+  overflow: hidden; /* ハミ出した部分を隠す */
+  text-overflow: ellipsis; /* 「…」と省略 */
+}

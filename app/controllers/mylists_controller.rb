@@ -31,6 +31,14 @@ class MylistsController < ApplicationController
 
   def show
     @mylist = Mylist.find(params[:id])
+    @vtubers = @mylist.vtubers.includes(:videos)
+    videos = []
+    @vtubers.each do |vtuber|
+      vtuber.videos.each do |video|
+        videos << video
+      end
+    end
+    @videos_all = videos.sort_by! { |a| a[:publishedAt] }.reverse
   end
 
   private

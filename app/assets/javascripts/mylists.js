@@ -74,14 +74,37 @@ $(function() {
       .remove();
   });
 
-  $(document).on("mouseover", ".detail--box__top", function() {
-    id = $(this).attr("data-mylist-id")
-    detailCover(id);
-  })
-
   $(".detail--box__top").hover(function() {
     $(".mylist-cover", this ).css('visibility', 'visible');
     }, function() {
     $(".mylist-cover", this ).css('visibility', 'hidden');
     });
+
+  $(".leftbar--section").hover(function() {
+    $(this ).css('background-color', '#f8f8ff');
+    }, function() {
+    $(this ).css('background-color', '');
+    });
+  
+  $(document).on("click", ".headbar-icon", function() {
+    if ($(".leftbar-detail").is(":hidden")) {
+      $(".leftbar").hide();
+      $(".headbar--menu_icon-right").hide();
+      $(".leftbar-detail").show();
+      $(".headbar--menu_icon-left").show();
+      $(".headbar--menu_icon-left").css('display', 'flex');
+    } else {
+      $(".leftbar-detail").hide();
+      $(".leftbar").show();
+      $(".headbar--menu_icon-right").show();
+      $(".headbar--menu_icon-left").hide();
+    }
+  });
+
+  $(".leftbar-detail--section").hover(function() {
+    $(this ).css('background-color', '#f8f8ff');
+    }, function() {
+    $(this ).css('background-color', '');
+    });
+
 });

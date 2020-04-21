@@ -1,10 +1,10 @@
 .detail
   - @mylists.each do |mylist|
-    = link_to user_mylists_path(current_user, mylist.id) do
+    = link_to user_mylist_path(current_user, mylist.id) do
       .detail--box{ "data-mylist-id": "#{mylist.id}" }
         .detail--box__top
           .mylist-cover
-            = icon('fas', 'bars', class: 'cover_icon')
+            = icon('fas', 'layer-group', class: 'cover_icon')
             最新動画
           .detail--box__top__image
             = image_tag(src= "#{mylist.vtubers.first.icon}", class: "image")

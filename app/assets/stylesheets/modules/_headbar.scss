@@ -4,16 +4,31 @@
   background-color: #FFFFFF;
   display: flex;
   align-items: center;
-  padding-left: 50px;
   justify-content: space-between;
   border-bottom: inset 3px;
   &--right {
     display: flex;
     align-items: center;
   }
+  &--menu_icon-right {
+    width: 80px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &--menu_icon-left {
+    width: 80px;
+    height: 100%;
+
+    align-items: center;
+    justify-content: center;
+    display:none;
+    float:left;
+  }
 }
 
-.menu_icon_right {
+.menu_icon {
   font-size: 1.5em;
   color: #787878;
 }
