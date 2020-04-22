@@ -4,6 +4,12 @@
       = icon('fas', 'chevron-circle-right', class: 'menu_icon')
     .headbar--menu_icon-left
       = icon('fas', 'chevron-circle-left', class: 'menu_icon')
+  .headbar--center
+    .mylist--name
+      - unless @mylist == nil
+        = icon('fas', 'folder-open', class: 'mylist--icon')
+        .mylist--name--text
+          = @mylist.name
   .headbar--right
     .headbar--right__name
       = link_to edit_user_path(current_user), class: 'user_name' do

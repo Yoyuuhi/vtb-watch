@@ -63,3 +63,4 @@ gem 'pry-rails'
 gem 'whenever', require: false
 
 gem 'dotenv-rails'
+gem 'kaminari'

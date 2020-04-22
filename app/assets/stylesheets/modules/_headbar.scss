@@ -52,3 +52,13 @@
   margin-left: 10px;
   color: #787878;
 }
+
+.mylist--name {
+  display: flex;
+  color: #787878;
+  font-size: 1.5em;
+  align-items: center;
+  &--text {
+    margin-left: 5px;
+  }
+}

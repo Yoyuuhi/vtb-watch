@@ -2,7 +2,6 @@ class VtubersController < ApplicationController
   before_action :set_company
 
   def show
-    @mylist = Mylist.find(params[:mylist_id])
   end
 
   def new
