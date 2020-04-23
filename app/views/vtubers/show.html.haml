@@ -1,7 +1,6 @@
 .wrapper
-  .menu_bar
-    = render partial: "mylists/menu"
-  .back
-    = render partial: "mylists/headbar"
-    = render partial: "mylists_list"
-    = render partial: "vtuber_detail"
+  .head
+    = render "headbar"
+  .body
+    = render "leftbar"
+    = render "detail"

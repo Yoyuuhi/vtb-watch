@@ -18,17 +18,12 @@
       = icon('fas', 'home', class: 'leftbar--menu--icon')
       .leftbar-detail--text
         ホーム
-  .leftbar-detail--section
-    = link_to user_mylist_path(current_user, id: params[:id]), class: "links-mylist" do
-      = icon('fas', 'folder-open', class: 'leftbar--menu--icon')
-      .leftbar-detail--text
-        = @mylist.name
-  - @vtubers.each do |vtuber|
+  - @mylists.each do |mylist|
     .leftbar-detail--section
-      = link_to vtuber_path(vtuber), class: "links-mylist" do
-        = icon('fas', 'user', class: 'leftbar--menu--icon')
+      = link_to user_mylist_path(current_user, mylist.id), class: "links-mylist" do
+        = icon('fas', 'folder-open', class: 'leftbar--menu--icon')
         .leftbar-detail--text
-          = vtuber.name
+          = mylist.name
   .leftbar-detail--section
     = link_to new_user_mylist_path(current_user.id), class: "links" do
       = icon('fas', 'folder-plus', class: 'leftbar--menu--icon')

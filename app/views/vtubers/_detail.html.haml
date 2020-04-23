@@ -1,5 +1,17 @@
 .detail
-  .sort
+  .banner
+    = image_tag(src= "#{@vtuber.banner}", class: "channel-banner")
+  .sort-channel
+    .sort-channel--icon
+      = image_tag(src= "#{@vtuber.icon}", class: "channel-icon")
+    .sort-channel--name
+      = @vtuber.channelTitle
+    .sort-channel--channel
+      = link_to "https://www.youtube.com/channel/#{@vtuber.channel}", class: "sort-channel--channel" do
+        = icon('fab', 'youtube')
+    .sort-channel--twitter
+      = link_to "https://twitter.com/#{@vtuber.twitter}", class: "sort-channel--twitter" do
+        = icon('fab', 'twitter')
     .sort--all
       All
     .sort--onair
@@ -104,6 +116,3 @@
             配信済
   .pagination-planned
     = paginate(@videos_planned)
-
-
-.header-show

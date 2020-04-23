@@ -2,6 +2,13 @@ class VtubersController < ApplicationController
   before_action :set_company
 
   def show
+    @vtuber = Vtuber.find(params[:id])
+    @videos = @vtuber.videos.order(publishedAt: "DESC")
+    @mylists = current_user.mylists
+
+    @videos_all_page = @videos.page(params[:page]).per(10)
+    @videos_onair = @videos.where.not(actualStartTime: nil).where(actualEndTime: nil).page(params[:page]).per(10)
+    @videos_planned = @videos.where(actualStartTime: nil).where.not(actualEndTime: nil).page(params[:page]).per(10)
   end
 
   def new

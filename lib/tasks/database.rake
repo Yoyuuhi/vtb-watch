@@ -63,6 +63,7 @@ namespace :database do
         video.name = item['snippet']['title']
         video.publishedAt = item['snippet']['publishedAt']
         video.vtuber_id = vtuber.id.to_s
+        video.cover = item['snippet']['thumbnails']['medium']['url']
         video.save
       end
     end

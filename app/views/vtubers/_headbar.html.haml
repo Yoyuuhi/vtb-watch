@@ -5,15 +5,10 @@
     .headbar--menu_icon-left
       = icon('fas', 'chevron-circle-left', class: 'menu_icon')
   .headbar--center
-    .mylist--name
-      - unless @mylist == nil
-        = icon('fas', 'folder-open', class: 'mylist--icon')
-        .mylist--name--text
-          = @mylist.name
-      - if @mylist == nil && @vtuber == nil then
-        = icon('fas', 'home', class: 'mylist--icon')
-        .mylist--name--text
-          ホーム
+    .vtuber--name
+      = icon('fas', 'user', class: 'vtuber--icon')
+      .vtuber--name--text
+        = @vtuber.name
   .headbar--right
     .headbar--right__name
       = link_to edit_user_path(current_user), class: 'user_name' do

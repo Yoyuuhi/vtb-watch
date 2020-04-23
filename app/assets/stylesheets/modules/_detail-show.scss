@@ -1,11 +1,8 @@
 .video-boxes-all {
   display: flex;
   flex-wrap: wrap;
-
-
 }
 .pagination-all {
-
 }
 
 .video-boxes-onair {
@@ -29,7 +26,7 @@
 .video-box {
   height: 226px;
   width: 210px;
-  margin-right: 5px;
+  margin-right: 40px;
   &--name {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -68,12 +65,18 @@
     margin-right: 10px;
     border-bottom: solid #787878 3px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
   }
   &--onair {
     margin-right: 10px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
   }
   &--planned {
     cursor: pointer;
+    display: flex;
+    align-items: center;
   }
 }

@@ -1,10 +1,12 @@
 .detail {
   background-color: #f5f5f5;
   width: 100vw;
-  height: calc(100% - 100px);
+  min-height: calc(100vh - 100px); 
+  height:auto !important; 
   padding-top: 20px;
   padding-left: 50px;
   padding-right: 50px;
+  position: relative;
   &--box {
     position: relative;
     margin-left: 50px;
