@@ -6,6 +6,8 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: inset 3px;
+  position: fixed;
+  z-index: 2;
   &--right {
     display: flex;
     align-items: center;

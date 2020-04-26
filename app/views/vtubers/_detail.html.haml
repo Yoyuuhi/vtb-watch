@@ -12,107 +12,43 @@
     .sort-channel--twitter
       = link_to "https://twitter.com/#{@vtuber.twitter}", class: "sort-channel--twitter" do
         = icon('fab', 'twitter')
+    .add-to-mylist
+      = icon('fas', 'user-plus', class: 'add-to-mylist')
+
     .sort--all
       All
     .sort--onair
       ライブ配信中
     .sort--planned
       公開予定
-  .video-boxes-all
-    - @videos_all_page.each do |video|
-      .video-box
-        .video-box--video
-          = link_to "https://www.youtube.com/watch?v=#{video.videoId}", class: "video-box--name" do
-            = image_tag(src= "#{video.cover}", class: "image", height:"118", width: "210")
-          -# %iframe#player{frameborder: "0", height:"118", src: "https://www.youtube.com/embed/#{video.videoId}", type: "text/html", width: "210"}
-        .video-box--name
-          = link_to "https://www.youtube.com/watch?v=#{video.videoId}", class: "video-box--name" do
-            = video.name
-        .video-box--channel
-          = link_to "https://www.youtube.com/channel/#{video.vtuber.channel}", class: "video-box--channel" do
-            = video.vtuber.channelTitle
-        .video-box--status
-          - if video.scheduledStartTime == nil then
-            = video.publishedAt
-          - elsif video.actualEndTime == nil then
-            - if video.actualStartTime == nil then
-              = video.scheduledStartTime.strftime("%Y.%m.%d %H:%M")
-              から
-              .planned
-                公開予定
-            - else
-              = video.actualStartTime.strftime("%Y.%m.%d %H:%M")
-              から
-              .onair
-                ライブ
-          - else
-            = video.actualEndTime.strftime("%Y.%m.%d %H:%M")
-            配信済
+
+  .contents
+    .video-boxes-all
+      - @videos_all_page.each do |video|
+        = render partial: 'video_template', locals: { video: video }
+
+    .video-boxes-onair
+      - @videos_onair.each do |video|
+        = render partial: 'video_template', locals: { video: video }
+      - if @videos_onair.length == 0 then
+        .novideo-notice
+          このチャンネルにはライブ配信中の動画がありません
+
+    .video-boxes-planned
+      - @videos_planned.each do |video|
+        = render partial: 'video_template', locals: { video: video }
+      - if @videos_planned.length == 0 then
+        .novideo-notice
+          このチャンネルには公開予定の動画がありません
+
+    .tweet
+      %a{class: "twitter-timeline", "data-width": "250", "data-height": "400", href: "https://twitter.com/#{@vtuber.twitter}?ref_src=twsrc%5Etfw"}
+      %script{:async => "", :await => "", :src => "https://platform.twitter.com/widgets.js"}
+  
   .pagination-all
     = paginate(@videos_all_page)
-
-  .video-boxes-onair
-    - @videos_onair.each do |video|
-      .video-box
-        .video-box--video
-          = link_to "https://www.youtube.com/watch?v=#{video.videoId}", class: "video-box--name" do
-            = image_tag(src= "#{video.cover}", class: "image", height:"118", width: "210")
-          -# %iframe#player{frameborder: "0", height:"118", src: "https://www.youtube.com/embed/#{video.videoId}", type: "text/html", width: "210"}
-        .video-box--name
-          = link_to "https://www.youtube.com/watch?v=#{video.videoId}", class: "video-box--name" do
-            = video.name
-        .video-box--channel
-          = link_to "https://www.youtube.com/channel/#{video.vtuber.channel}", class: "video-box--channel" do
-            = video.vtuber.channelTitle
-        .video-box--status
-          - if video.scheduledStartTime == nil then
-            = video.publishedAt
-          - elsif video.actualEndTime == nil then
-            - if video.actualStartTime == nil then
-              = video.scheduledStartTime.strftime("%Y.%m.%d %H:%M")
-              から
-              .planned
-                公開予定
-            - else
-              = video.actualStartTime.strftime("%Y.%m.%d %H:%M")
-              から
-              .onair
-                ライブ
-          - else
-            = video.actualEndTime.strftime("%Y.%m.%d %H:%M")
-            配信済
   .pagination-onair
     = paginate(@videos_onair)
-
-  .video-boxes-planned
-    - @videos_planned.each do |video|
-      .video-box
-        .video-box--video
-          = link_to "https://www.youtube.com/watch?v=#{video.videoId}", class: "video-box--name" do
-            = image_tag(src= "#{video.cover}", class: "image", height:"118", width: "210")
-          -# %iframe#player{frameborder: "0", height:"118", src: "https://www.youtube.com/embed/#{video.videoId}", type: "text/html", width: "210"}
-        .video-box--name
-          = link_to "https://www.youtube.com/watch?v=#{video.videoId}", class: "video-box--name" do
-            = video.name
-        .video-box--channel
-          = link_to "https://www.youtube.com/channel/#{video.vtuber.channel}", class: "video-box--channel" do
-            = video.vtuber.channelTitle
-        .video-box--status
-          - if video.scheduledStartTime == nil then
-            = video.publishedAt
-          - elsif video.actualEndTime == nil then
-            - if video.actualStartTime == nil then
-              = video.scheduledStartTime.strftime("%Y.%m.%d %H:%M")
-              から
-              .planned
-                公開予定
-            - else
-              = video.actualStartTime.strftime("%Y.%m.%d %H:%M")
-              から
-              .onair
-                ライブ
-          - else
-            = video.actualEndTime.strftime("%Y.%m.%d %H:%M")
-            配信済
   .pagination-planned
     = paginate(@videos_planned)
+

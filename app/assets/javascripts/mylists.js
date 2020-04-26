@@ -30,7 +30,6 @@ $(function() {
   function AddVtuberDB(VtuberId) {
     let html = `<input value="${VtuberId}" name="mylist[vtuber_ids][]" type="hidden" id="mylist_vtuber_ids_${VtuberId}" />`;
     $(`#${VtuberId}`).append(html);
-    console.log($(`#${VtuberId}`))
   }
 
   $("#mylist-form__input").on("keyup", function() {
@@ -107,39 +106,39 @@ $(function() {
     $(this ).css('background-color', '');
     });
 
-    $(document).on("click", ".sort--all", function() {
-      $(".sort--all").css('border-bottom', '3px solid rgb(120, 120, 120)')
-      $(".sort--onair").css('border-bottom', 'none')
-      $(".sort--planned").css('border-bottom', 'none')
-      $(".video-boxes-all").css('display', 'flex')
-      $(".video-boxes-onair").css('display', 'none')
-      $(".video-boxes-planned").css('display', 'none')
-      $(".pagination-all").css('display', 'flex')
-      $(".pagination-onair").css('display', 'none')
-      $(".pagination-planned").css('display', 'none')
-    });
+  $(document).on("click", ".sort--all", function() {
+    $(".sort--all").css('border-bottom', '3px solid rgb(120, 120, 120)')
+    $(".sort--onair").css('border-bottom', 'none')
+    $(".sort--planned").css('border-bottom', 'none')
+    $(".video-boxes-all").css('display', 'flex')
+    $(".video-boxes-onair").css('display', 'none')
+    $(".video-boxes-planned").css('display', 'none')
+    $(".pagination-all").css('display', 'flex')
+    $(".pagination-onair").css('display', 'none')
+    $(".pagination-planned").css('display', 'none')
+  });
 
-    $(document).on("click", ".sort--onair", function() {
-      $(".sort--all").css('border-bottom', 'none')
-      $(".sort--onair").css('border-bottom', '3px solid rgb(120, 120, 120)')
-      $(".sort--planned").css('border-bottom', 'none')
-      $(".video-boxes-all").css('display', 'none')
-      $(".video-boxes-onair").css('display', 'flex')
-      $(".video-boxes-planned").css('display', 'none')
-      $(".pagination-all").css('display', 'none')
-      $(".pagination-onair").css('display', 'flex')
-      $(".pagination-planned").css('display', 'none')
-    });
+  $(document).on("click", ".sort--onair", function() {
+    $(".sort--all").css('border-bottom', 'none')
+    $(".sort--onair").css('border-bottom', '3px solid rgb(120, 120, 120)')
+    $(".sort--planned").css('border-bottom', 'none')
+    $(".video-boxes-all").css('display', 'none')
+    $(".video-boxes-onair").css('display', 'flex')
+    $(".video-boxes-planned").css('display', 'none')
+    $(".pagination-all").css('display', 'none')
+    $(".pagination-onair").css('display', 'flex')
+    $(".pagination-planned").css('display', 'none')
+  });
 
-    $(document).on("click", ".sort--planned", function() {
-      $(".sort--all").css('border-bottom', 'none')
-      $(".sort--onair").css('border-bottom', 'none')
-      $(".sort--planned").css('border-bottom', '3px solid rgb(120, 120, 120)')
-      $(".video-boxes-all").css('display', 'none')
-      $(".video-boxes-onair").css('display', 'none')
-      $(".video-boxes-planned").css('display', 'flex')
-      $(".pagination-all").css('display', 'none')
-      $(".pagination-onair").css('display', 'none')
-      $(".pagination-planned").css('display', 'flex')
-    });
+  $(document).on("click", ".sort--planned", function() {
+    $(".sort--all").css('border-bottom', 'none')
+    $(".sort--onair").css('border-bottom', 'none')
+    $(".sort--planned").css('border-bottom', '3px solid rgb(120, 120, 120)')
+    $(".video-boxes-all").css('display', 'none')
+    $(".video-boxes-onair").css('display', 'none')
+    $(".video-boxes-planned").css('display', 'flex')
+    $(".pagination-all").css('display', 'none')
+    $(".pagination-onair").css('display', 'none')
+    $(".pagination-planned").css('display', 'flex')
+  });
 });

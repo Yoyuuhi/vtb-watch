@@ -16,12 +16,12 @@ class VtubersController < ApplicationController
   end
 
   def create
-    @vtuber = Vtuber.new(vtuber_params)
-    if @vtuber.save
-      redirect_to root_path, notice: '新しいvtuber情報を作成しました'
-    else
-      render :new
-    end
+    # @vtuber = Vtuber.new(vtuber_params)
+    # if @vtuber.save
+    #   redirect_to root_path, notice: '新しいvtuber情報を作成しました'
+    # else
+    #   render :new
+    # end
   end
 
   def edit
@@ -29,12 +29,13 @@ class VtubersController < ApplicationController
   end
 
   def update
-    @vtuber = Vtuber.find(params[:id])
-    if @vtuber.update(vtuber_params)
-      redirect_to root_path, notice: 'vtuber情報を更新しました'
-    else
-      render :update
-    end
+    # @vtuber = Vtuber.find(params[:id])
+    # if @vtuber.update(vtuber_params)
+    #   redirect_to root_path, notice: 'vtuber情報を更新しました'
+    # else
+    #   render :update
+    # end
+  
   end
 
   def index

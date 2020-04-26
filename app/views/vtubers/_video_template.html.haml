@@ -1,0 +1,28 @@
+.video-box
+  .video-box--video
+    = link_to "https://www.youtube.com/watch?v=#{video.videoId}", class: "video-box--name", target: :_blank do
+      = image_tag(src= "#{video.cover}", class: "image", height:"118", width: "210")
+    -# %iframe#player{frameborder: "0", height:"118", src: "https://www.youtube.com/embed/#{video.videoId}", type: "text/html", width: "210"}
+  .video-box--name
+    = link_to "https://www.youtube.com/watch?v=#{video.videoId}", class: "video-box--name", target: :_blank do
+      = video.name
+  .video-box--channel
+    = link_to "https://www.youtube.com/channel/#{video.vtuber.channel}", class: "video-box--channel", target: :_blank do
+      = video.vtuber.channelTitle
+  .video-box--status
+    - if video.scheduledStartTime == nil then
+      = video.publishedAt.strftime("%Y.%m.%d %H:%M")
+    - elsif video.actualEndTime == nil then
+      - if video.actualStartTime == nil then
+        = video.scheduledStartTime.strftime("%Y.%m.%d %H:%M")
+        から
+        .planned
+          公開予定
+      - else
+        = video.actualStartTime.strftime("%Y.%m.%d %H:%M")
+        から
+        .onair
+          ライブ
+    - else
+      = video.actualEndTime.strftime("%Y.%m.%d %H:%M")
+      配信済

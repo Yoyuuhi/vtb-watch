@@ -42,7 +42,7 @@ namespace :database do
       # チャンネル最新動画情報の取得
       kind = "search"
       part = "snippet"
-      maxResults = "10"
+      maxResults = "20"
       order = "date"
       url = URI.parse("#{url_temp}/#{kind}?part=#{part}&channelId=#{vtuber.channel}&key=#{key}&maxResults=#{maxResults}&order=#{order}")
       # APIを叩く

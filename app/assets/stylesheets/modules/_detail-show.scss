@@ -3,6 +3,7 @@
   flex-wrap: wrap;
 }
 .pagination-all {
+  height: 50px;
 }
 
 .video-boxes-onair {
@@ -12,6 +13,7 @@
 }
 .pagination-onair {
   display: none;
+  height: 50px;
 }
 
 .video-boxes-planned {
@@ -21,12 +23,13 @@
 }
 .pagination-planned {
   display: none;
+  height: 50px;
 }
 
 .video-box {
   height: 226px;
   width: 210px;
-  margin-right: 40px;
+  margin-right: 30px;
   &--name {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -80,3 +83,4 @@
     align-items: center;
   }
 }
+

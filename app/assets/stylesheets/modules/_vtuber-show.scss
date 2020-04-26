@@ -21,11 +21,14 @@
 
 .sort-channel {
   background-color: white;
-  padding: 20px 0;
+  height: 120px;
   overflow-x: scroll;
   scrollbar-width: thin;
   white-space: nowrap;
   display: flex;
+  align-items: center;
+  position: sticky;
+  top: 60px;
   &--name {
     display: flex;
     align-items: center;
@@ -44,7 +47,7 @@
     align-items: center;
     font-size: 1.5em;
     color: #00acee;
-    margin-right: 20px;
+    margin-right: 10px;
   }
   &--all {
     display: flex;
@@ -64,4 +67,140 @@
     align-items: center;
     cursor: pointer;
   }
+}
+
+.contents {
+  display: flex;
+}
+
+.video-boxes-all {
+  width: calc(100% - 200px);
+}
+
+.video-boxes-onair {
+  width: calc(100% - 200px);
+}
+
+.video-boxes-planned {
+  width: calc(100% - 200px);
+}
+
+.novideo-notice {
+  margin-top: 20px;
+}
+
+.add-to-mylist {
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.3em;
+}
+
+.add-to {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // display: none;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  background-color: rgba(0,0,0,0.7);
+  &--form {
+    background-color: white;
+    // height: 290px;
+    width: 260px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    margin-left:-145px;
+    margin-top:-130px;
+    &__header {
+      width: 100%;
+      height: 53px;
+      border-bottom: solid 1px #dcdcdc;
+      display: flex;
+      align-items: center;
+      &__text {
+        padding: 16px 24px;
+        width: 216px;
+      }
+    }
+    &__content {
+    max-height: 300px;
+    max-width: 600px;
+    overflow: auto;
+    padding: 16px 24px;
+    }
+    &__footer {
+      width: 100%;
+      height: 48px;
+      border-top: solid 1px #dcdcdc;
+      display: flex;
+      align-items: center;
+      padding: 4px 24px;
+      &__icon {
+        margin-right: 16px;
+      }
+    }
+  }
+}
+
+.edit_vtuber label {
+  display: block;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  cursor: pointer;
+  min-height:40px;
+  margin-left: 40px;
+  width: 140px;
+}
+
+.edit_vtuber label:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #787878;
+  position: absolute;
+  left: 24px;
+}
+
+input[type="checkbox"]:checked + .checked__icon {
+  position: absolute;
+  left: 26px;
+  width: 20px;
+  height: 20px;
+  background-color: #4169e1;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checked__icon {
+  position: absolute;
+  left: 26px;
+  width: 20px;
+  height: 20px;
+  background-color: #4169e1;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.check__mylist__icon {
+  position: absolute;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  color: #787878;
+}
+
+input[type="checkbox"] {
+  display: none;
 }
