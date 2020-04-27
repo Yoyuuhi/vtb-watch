@@ -132,11 +132,12 @@
     max-width: 600px;
     overflow: auto;
     padding: 16px 24px;
+    border-bottom: solid 1px #dcdcdc;
     }
     &__footer {
       width: 100%;
       height: 48px;
-      border-top: solid 1px #dcdcdc;
+      cursor: pointer;
       display: flex;
       align-items: center;
       padding: 4px 24px;
@@ -203,4 +204,36 @@ input[type="checkbox"]:checked + .checked__icon {
 
 input[type="checkbox"] {
   display: none;
+}
+
+.add-to--form__newmylist {
+  padding-top: 16px;
+  padding-right: 24px;
+  padding-left: 24px;
+  &__text {
+    font-size: 13px;
+  }
+  &__input {
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px black;
+  }
+  &__submit {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border: none;
+    
+  }
+  &__btn {
+    cursor: pointer;
+    border: none;
+    margin-left: auto;
+  }
+}
+
+input[type="text"]:focus {
+  outline: 0;
+  
+  
 }

@@ -20,3 +20,12 @@
           = icon('fas', 'plus', class: 'add-to--form__footer__icon')
         .add-to--form__footer__text
           新しいmylistを作成
+      .add-to--form__newmylist
+        = form_for @mylist, url: new_user_mylist_path(current_user) do |f|
+          %input{name: "mylist[vtuber_ids][]", type: "hidden", value: params[:id]}
+          .add-to--form__newmylist__text
+            名前
+          .add-to--form__newmylist__input
+            = f.text_field :name, class: 'add-to--form__newmylist__input', placeholder: 'mylistの名前を入力してください'
+          .add-to--form__newmylist__submit
+            = f.submit class: 'add-to--form__newmylist__btn', value: "作成"

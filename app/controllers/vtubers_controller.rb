@@ -5,6 +5,7 @@ class VtubersController < ApplicationController
     @vtuber = Vtuber.find(params[:id])
     @videos = @vtuber.videos.order(publishedAt: "DESC")
     @mylists = current_user.mylists
+    @mylist = Mylist.new
 
     @videos_all_page = @videos.page(params[:page]).per(10)
     @videos_onair = @videos.where.not(actualStartTime: nil).where(actualEndTime: nil).page(params[:page]).per(10)
@@ -35,7 +36,8 @@ class VtubersController < ApplicationController
     # else
     #   render :update
     # end
-  
+    @vtuber = Vtuber.find(params[:id])
+    @vtuber.update(check_params)
   end
 
   def index
@@ -50,9 +52,13 @@ class VtubersController < ApplicationController
   end
 
   private
-  def vtuber_params
-    company_id = Company.find_by(name: params.require(:vtuber)[:company])[:id]
-    return params.require(:vtuber).permit(:name, :twitter, :channel).merge(company_id: company_id)
+  # def vtuber_params
+  #   company_id = Company.find_by(name: params.require(:vtuber)[:company])[:id]
+  #   return params.require(:vtuber).permit(:name, :twitter, :channel).merge(company_id: company_id)
+  # end
+
+  def check_params
+    params.require(:vtuber).permit(:id, mylist_ids: [])
   end
 
   def set_company

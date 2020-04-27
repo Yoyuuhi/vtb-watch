@@ -106,6 +106,12 @@ $(function() {
     $(this ).css('background-color', '');
     });
 
+    $('label[for='+ $(this).attr('id') +']')
+
+  $("input[type=checkbox]").change(function() {
+    $('.edit_vtuber').submit()
+  })
+
   $(document).on("click", ".sort--all", function() {
     $(".sort--all").css('border-bottom', '3px solid rgb(120, 120, 120)')
     $(".sort--onair").css('border-bottom', 'none')
