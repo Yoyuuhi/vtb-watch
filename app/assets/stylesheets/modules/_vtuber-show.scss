@@ -94,13 +94,14 @@
   display: flex;
   justify-content: center;
   font-size: 1.3em;
+  cursor: pointer;
 }
 
 .add-to {
   display: flex;
   align-items: center;
   justify-content: center;
-  // display: none;
+  // visibility: hidden;
   z-index: 3;
   width: 100%;
   height: 100%;
@@ -126,6 +127,9 @@
         padding: 16px 24px;
         width: 216px;
       }
+      &__icon {
+        cursor: pointer;
+      }
     }
     &__content {
     max-height: 300px;
@@ -149,41 +153,62 @@
 }
 
 .edit_vtuber label {
-  display: block;
+  display: flex;
+  align-items: center;
+  
+  cursor: pointer;
+  min-height:40px;
+  width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// .edit_vtuber label:before {
+//   content: '';
+//   display: block;
+//   min-width: 20px;
+//   height: 20px;
+//   border: 2px solid #787878;
+//   margin-right: 20px;
+//   position: static;
+// }
+
+.icon-before {
+  min-width: 22px;
+  height: 22px;
+  border: 2px solid #787878;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.mylist-tag {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
-  cursor: pointer;
-  min-height:40px;
-  margin-left: 40px;
-  width: 140px;
 }
 
-.edit_vtuber label:before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #787878;
-  position: absolute;
-  left: 24px;
+.icon-after {
+  margin-left: 20px;
 }
 
-input[type="checkbox"]:checked + .checked__icon {
-  position: absolute;
-  left: 26px;
-  width: 20px;
-  height: 20px;
-  background-color: #4169e1;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+
+
+// input[type="checkbox"]:checked + .checked__icon {
+//   position: relative;
+//   left: -22px;
+//   width: 20px;
+//   height: 20px;
+//   background-color: #4169e1;
+//   color: white;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
 
 .checked__icon {
-  position: absolute;
-  left: 26px;
   width: 20px;
   height: 20px;
   background-color: #4169e1;
@@ -194,9 +219,18 @@ input[type="checkbox"]:checked + .checked__icon {
   display: none;
 }
 
+input[type="checkbox"]:checked + .checked__icon {
+  width: 20px;
+  height: 20px;
+  background-color: #4169e1;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .check__mylist__icon {
-  position: absolute;
-  right: 30px;
+  right: -130px;
   display: flex;
   align-items: center;
   color: #787878;
@@ -210,6 +244,7 @@ input[type="checkbox"] {
   padding-top: 16px;
   padding-right: 24px;
   padding-left: 24px;
+  display: none;
   &__text {
     font-size: 13px;
   }
@@ -234,6 +269,5 @@ input[type="checkbox"] {
 
 input[type="text"]:focus {
   outline: 0;
-  
-  
 }
+

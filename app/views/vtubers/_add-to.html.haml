@@ -1,0 +1,30 @@
+.add-to--form
+  .add-to--form__header
+    .add-to--form__header__text
+      保存先...
+    .add-to--form__header__icon
+      = icon('fas', 'times', class: 'add-to--form__header__icon')
+  .add-to--form__content
+    = form_for @vtuber do |f|
+      = collection_check_boxes :vtuber, :mylist_ids, @mylists, :id, :name do |mylist|
+        .mylist-tag
+          .icon-before
+            = mylist.label { mylist.check_box + icon('fas', 'check', class: 'checked__icon') }
+          .label
+            = mylist.label { mylist.text }
+          .icon-after
+            = icon('fas', 'folder-open', class: 'check__mylist__icon')
+  .add-to--form__footer
+    .add-to--form__footer__icon
+      = icon('fas', 'plus', class: 'add-to--form__footer__icon')
+    .add-to--form__footer__text
+      新しいmylistを作成
+  .add-to--form__newmylist
+    = form_for @mylist, url: new_user_mylist_path(current_user) do |f|
+      %input{name: "mylist[vtuber_ids][]", type: "hidden", value: params[:id]}
+      .add-to--form__newmylist__text
+        名前
+      .add-to--form__newmylist__input
+        = f.text_field :name, class: 'add-to--form__newmylist__input', placeholder: 'mylistの名前を入力してください'
+      .add-to--form__newmylist__submit
+        = f.submit "作成", class: 'add-to--form__newmylist__btn'

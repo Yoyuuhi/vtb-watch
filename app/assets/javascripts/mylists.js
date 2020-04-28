@@ -106,7 +106,6 @@ $(function() {
     $(this ).css('background-color', '');
     });
 
-    $('label[for='+ $(this).attr('id') +']')
 
   $("input[type=checkbox]").change(function() {
     $('.edit_vtuber').submit()

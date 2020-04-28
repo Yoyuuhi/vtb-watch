@@ -8,10 +8,11 @@ class MylistsController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
     @mylist = Mylist.new(mylist_params)
     if @mylist.save
-      redirect_to root_path, notice: 'マイリストを作成しました'
+      redirect_to root_path
+      # , notice: 'マイリストを作成しました'
     else
       render :new
     end
