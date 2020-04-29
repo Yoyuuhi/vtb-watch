@@ -3,18 +3,19 @@
 }
 
 .leftbar {
-  height: calc(100% - 100px);
+  height: calc(100% - 60px);
   background-color: white;
   width: 80px;
   text-align: center;
   white-space: nowrap;
-  margin-top: 60px;
-  position: sticky;
+  z-index: 3;
+  position: fixed;
   top: 60px;
 }
 
 .leftbar--section {
   padding: 10px 0;
+  cursor: pointer;
   &--icon {
     font-size: 1.1em;
     text-decoration: none;
@@ -29,23 +30,29 @@
 
 .leftbar-detail {
   width: 250px;
-  height: calc(100% - 100px);
+  height: calc(100vh - 60px);
   display:none;
   float:left;
   white-space: nowrap;
-  margin-top: 60px;
-  position: sticky;
+  overflow: scroll;
+  z-index: 3;
+  position: fixed;
   top: 60px;
-
+  background-color: white;
   &--section {
     height: 50px;
     display: flex;
     align-items: center;
     padding-left: 20px;
     color: #808080;
+    cursor: pointer;
   }
   &--text {
     color: #808080;
+    width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 

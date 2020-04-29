@@ -11,6 +11,11 @@
         = icon('fas', 'folder-plus', class: 'leftbar--section--icon')
       .leftbar--section--text
         mylist作成
+  .leftbar--section
+    .leftbar--section--icon{ id: "vtuber-search" }
+      = icon('fas', 'search', class: 'leftbar--section--icon')
+    .leftbar--section--text
+      vtuber検索
 
 .leftbar-detail
   .leftbar-detail--section
@@ -18,14 +23,20 @@
       = icon('fas', 'home', class: 'leftbar--menu--icon')
       .leftbar-detail--text
         ホーム
-  - @mylists.each do |mylist|
-    .leftbar-detail--section
-      = link_to user_mylist_path(current_user, mylist.id), class: "links-mylist" do
-        = icon('fas', 'folder-open', class: 'leftbar--menu--icon')
-        .leftbar-detail--text
-          = mylist.name
+  .leftbar-detail--mylist
+    - @mylists.each do |mylist|
+      .leftbar-detail--section
+        = link_to user_mylist_path(current_user, mylist.id), class: "links-mylist" do
+          = icon('fas', 'folder-open', class: 'leftbar--menu--icon')
+          .leftbar-detail--text
+            = mylist.name
   .leftbar-detail--section
     = link_to new_user_mylist_path(current_user.id), class: "links" do
       = icon('fas', 'folder-plus', class: 'leftbar--menu--icon')
       .leftbar-detail--text
         mylist作成
+  .leftbar-detail--section{ id: "vtuber-search-detail" }
+    = icon('fas', 'search', class: 'leftbar--menu--icon')
+    .leftbar-detail--text
+      vtuber検索
+
