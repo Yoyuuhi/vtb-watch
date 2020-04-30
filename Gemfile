@@ -64,3 +64,4 @@ gem 'whenever', require: false
 
 gem 'dotenv-rails'
 gem 'kaminari'
+gem 'jquery-turbolinks'

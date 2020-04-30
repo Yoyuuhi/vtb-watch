@@ -12,10 +12,21 @@
                 %br
                 vtuber
               .detail--box__top__right__icon
-                = icon('fas', 'bars', class: 'num_icon')
+                = icon('fas', 'folder', class: 'num_icon')
+            .detail--box__top__right-menu
+              = link_to edit_user_mylist_path(current_user, id: mylist.id) do
+                .detail--box__top__right-menu--edit
+                  = icon('fas', 'pencil-alt', class: 'mylist_menu_icon')
+                  編集
+              = link_to user_mylist_path(current_user, id: mylist.id), method: :delete do
+                .detail--box__top__right-menu--delete
+                  = icon('fas', 'trash', class: 'mylist_menu_icon')
+                  削除
           .detail--box__bottom
             .detail--box__bottom__name
               = mylist.name
             .detail--box__bottom__date
               Last updated:
               = mylist.updated_at.strftime("%Y.%m.%d %H:%M")
+      
+

@@ -8,16 +8,16 @@
   padding-left: 50px;
   padding-right: 50px;
   margin-left: 80px;
-  position: relative;
+
   z-index: 1;
   &--box {
-    position: relative;
     margin-left: 50px;
     margin-bottom: 50px;
     width: 210px;
     height: 226px;
     &__top {
       display: flex;
+      position: relative;
       &__image {
         margin-top: 0;
         height: 118px;
@@ -25,10 +25,14 @@
       }
       &__right {
         width: calc(210px - 118px);
+        height: 118px;
         background-color: #787878;
         color: white;
         text-align: center;
-        z-index: 2;
+        z-index: 1;
+        position: absolute;
+        left: 118px;
+        top: 0px;
         &__vtuber-info {
           margin-top: 20px;
         }
@@ -42,7 +46,11 @@
         margin-top: 5px;
         margin-left: 5px;
         margin-right: 5px;
+        width: 100%;
         color: black;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       &__date {
         margin-left: 5px;
@@ -62,22 +70,31 @@ a {
   text-decoration: none;
 }
 
-.mylist-cover {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 210px;
+.detail--box__top__right-menu {
+  width: 92px;
   height: 118px;
-  color: white;
-  background-color: black;
+  background-color: #787878;
   z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.7);
-  visibility: hidden;
+  position: absolute;
+  left: 118px;
+  display: none;
+  &--edit {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    color: white;
+  }
+  &--delete {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    color: white;
+  }
 }
 
-.cover_icon {
+.mylist_menu_icon {
+  display: flex;
+  align-items: center;
   margin-right: 10px;
+  color: white;
 }

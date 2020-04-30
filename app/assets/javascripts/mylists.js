@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   function SearchVtuber(vtuber) {
     let html = `
       <div class="mylist-form__field--right">
@@ -58,7 +58,7 @@ $(function() {
       });
   });
 
-  $(document).on("click", ".vtuber__btn--add", function() {
+  $(".vtuber__btn--add").on("click", function() {
     const vtuberName = $(this).attr("data-vtuber-name");
     const vtuberId = $(this).attr("data-vtuber-id");
     $(this)
@@ -72,12 +72,6 @@ $(function() {
       .parent()
       .remove();
   });
-
-  $(".detail--box__top").hover(function() {
-    $(".mylist-cover", this ).css('visibility', 'visible');
-    }, function() {
-    $(".mylist-cover", this ).css('visibility', 'hidden');
-    });
 
   $(".leftbar--section").hover(function() {
     $(this ).css('background-color', '#f8f8ff');
@@ -98,7 +92,7 @@ $(function() {
     $('.edit_vtuber').submit()
   })
 
-  $(document).on("click", ".sort--all", function() {
+  $(".sort--all").on("click", function() {
     $(".sort--all").css('border-bottom', '3px solid rgb(120, 120, 120)')
     $(".sort--onair").css('border-bottom', 'none')
     $(".sort--planned").css('border-bottom', 'none')
@@ -110,7 +104,7 @@ $(function() {
     $(".pagination-planned").css('display', 'none')
   });
 
-  $(document).on("click", ".sort--onair", function() {
+  $(".sort--onair").on("click", function() {
     $(".sort--all").css('border-bottom', 'none')
     $(".sort--onair").css('border-bottom', '3px solid rgb(120, 120, 120)')
     $(".sort--planned").css('border-bottom', 'none')
@@ -122,7 +116,7 @@ $(function() {
     $(".pagination-planned").css('display', 'none')
   });
 
-  $(document).on("click", ".sort--planned", function() {
+  $(".sort--planned").on("click", function() {
     $(".sort--all").css('border-bottom', 'none')
     $(".sort--onair").css('border-bottom', 'none')
     $(".sort--planned").css('border-bottom', '3px solid rgb(120, 120, 120)')
@@ -133,4 +127,10 @@ $(function() {
     $(".pagination-onair").css('display', 'none')
     $(".pagination-planned").css('display', 'flex')
   });
+
+  $(".detail--box__top").hover(function() {
+    $(".detail--box__top__right-menu", this ).css('display', 'inline');
+    }, function() {
+    $(".detail--box__top__right-menu", this ).css('display', 'none');
+    });
 });

@@ -62,5 +62,8 @@
   align-items: center;
   &--text {
     margin-left: 5px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

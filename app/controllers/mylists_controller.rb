@@ -60,6 +60,12 @@ class MylistsController < ApplicationController
     @videos_planned = Kaminari.paginate_array(videos_planned).page(params[:page]).per(10)
   end
 
+  def destroy
+    @mylist = Mylist.find(params[:id])
+    @mylist.destroy
+    redirect_to root_path
+  end
+
   private
   def mylist_params
     params.require(:mylist).permit(:name, vtuber_ids: []).merge(user_id: current_user.id)

@@ -1,5 +1,16 @@
-$(function() {
-  $(document).on("click", ".headbar-icon", function() {
+$(document).on('turbolinks:load', function() {
+  if ($(".tweet").length != 0) {
+    $(".video-boxes-all").css('width', 'calc(100% - 200px)');
+    $(".video-boxes-onair").css('width', 'calc(100% - 200px)');
+    $(".video-boxes-planned").css('width', 'calc(100% - 200px)');
+  } else {
+    $(".video-boxes-all").css('width', '100%');
+    $(".video-boxes-onair").css('width', '100%');
+    $(".video-boxes-planned").css('width', '100%');
+  }
+  
+
+  $(".headbar-icon").on("click", function() {
     $(".search").css('visibility', 'hidden');
     if ($(".leftbar-detail").is(":hidden")) {
       $(".leftbar").hide();
@@ -17,7 +28,7 @@ $(function() {
     }
   });
 
-  $(document).on("click", "#vtuber-search, #vtuber-search-detail", function() {
+  $("#vtuber-search, #vtuber-search-detail").on("click", function() {
     if ($(".leftbar-detail").is(":hidden")) {
       $(".search").css('left', '80px');
       $("#search--form--result").empty();

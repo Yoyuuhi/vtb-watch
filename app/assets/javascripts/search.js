@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   function SearchVtuberSide(vtuber) {
     let html = `
     <a href="/vtubers/${vtuber.id}" class="search--form--result-a">
@@ -51,7 +51,7 @@ $(function() {
       });
   });
 
-  $(document).on("click", ".search--form--close__icon", function(e) {
+  $(".search--form--close__icon").on("click", function(e) {
     $(".search").css('visibility', 'hidden');
   })
 

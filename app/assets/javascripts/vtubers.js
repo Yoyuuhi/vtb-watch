@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   $(".new_mylist").on("submit", function(e) {
     e.preventDefault();
     $(".add-to").css('visibility', 'hidden');
@@ -14,11 +14,11 @@ $(function() {
     })
   })
 
-  $(document).on("click", ".add-to--form__header__icon", function(e) {
+  $(".add-to--form__header__icon").on("click", function(e) {
     $(".add-to").css('visibility', 'hidden');
   })
 
-  $(document).on("click", ".add-to-mylist", function(e) {
+  $(".add-to-mylist").on("click", function(e) {
     $(".add-to").css('visibility', 'visible');
     if($('.add-to--form__footer').css('display') == 'none') {
       $(".add-to--form__newmylist").css('display', 'none');
@@ -26,7 +26,7 @@ $(function() {
     }
   })
 
-  $(document).on("click", ".add-to--form__footer", function(e) {
+  $(".add-to--form__footer").on("click", function(e) {
     $(".add-to--form__newmylist").css('display', 'block');
     $(".add-to--form__footer").css('display', 'none');
   })
