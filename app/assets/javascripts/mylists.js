@@ -1,30 +1,52 @@
 $(document).on('turbolinks:load', function() {
   function SearchVtuber(vtuber) {
     let html = `
-      <div class="mylist-form__field--right">
-        <p class="vtuber__name">${vtuber.name}</p>
-        <div class="vtuber__btn--add" data-vtuber-id="${vtuber.id}" data-vtuber-name="${vtuber.name}">追加</div>
+    <div class="vtuber-search-result">
+      <div class="vtuber-search-result--name">
+        ${vtuber.name}
       </div>
+      <div class="vtuber-search-result--twitter">
+        @${vtuber.twitter}
+      </div>
+      <div class="vtuber-search-result--company">
+        ${vtuber.company}
+      </div>
+      <div class="vtuber-search-result--add" data-vtuber-id="${vtuber.id}" data-vtuber-name="${vtuber.name}" data-vtuber-twitter="${vtuber.twitter}" data-vtuber-company="${vtuber.company}">
+        追加
+      </div>
+    </div>
     `;
-    $("#vtuber-search-result").append(html);
+    $("#vtuber-search-results").append(html);
   }
 
   function SearchNoVtuber() {
     let html = `
-      <div class="mylist-form__field--right">
-        <p class="vtuber__name">vtuberが見つかりません</p>
+      <div class="vtuber-search-result">
+        vtuberが見つかりません
       </div>
     `;
-    $("#vtuber-search-result").append(html);
+    $("#vtuber-search-results").append(html);
   }
 
-  function AddVtuber(name, id) {
+  function AddVtuber(name, twitter, company, id) {
     let html = `
-    <div class="mylist-vtuber clearfix" id="${id}">
-      <p class="mylist-vtuber__name">${name}</p>
-      <div class="vtuber-search-remove vtuber__btn--remove js-remove-btn" data-vtuber-id="${id}" data-vtuber-name="${name}">削除</div>
-    </div>`;
-    $(".js-add-vtuber").append(html);
+    <div class="mylist-vtubers">
+      <input name="mylist[vtuber_ids][]" type="hidden" value="${id}">
+      <div class="mylist-vtubers--name">
+        ${name}
+      </div>
+      <div class="mylist-vtubers--twitter">
+        @${twitter}
+      </div>
+      <div class="mylist-vtubers--company">
+        ${company}
+      </div>
+      <div class="mylist-vtubers--delete" data-vtuber-id="${id}" data-vtuber-name="${name}" data-vtuber-twitter="${twitter}" data-vtuber-company="${company}">
+        削除
+      </div>
+    </div>
+    `;
+    $("#mylist-vtubers").append(html);
   }
 
   function AddVtuberDB(VtuberId) {
@@ -41,7 +63,7 @@ $(document).on('turbolinks:load', function() {
       dataType: "json"
     })
       .done(function(vtubers) {
-        $("#vtuber-search-result").empty();
+        $("#vtuber-search-results").empty();
 
         if (vtubers.length !== 0) {
           vtubers.forEach(function(vtuber) {
@@ -58,16 +80,19 @@ $(document).on('turbolinks:load', function() {
       });
   });
 
-  $(".vtuber__btn--add").on("click", function() {
+  $(document).on("click", ".vtuber-search-result--add", function() {
     const vtuberName = $(this).attr("data-vtuber-name");
+    const vtuberTwitter = $(this).attr("data-vtuber-twitter");
+    const vtuberCompany = $(this).attr("data-vtuber-company");
     const vtuberId = $(this).attr("data-vtuber-id");
     $(this)
       .parent()
       .remove();
-    AddVtuber(vtuberName, vtuberId);
+    AddVtuber(vtuberName, vtuberTwitter, vtuberCompany, vtuberId);
     AddVtuberDB(vtuberId);
   });
-  $(document).on("click", ".vtuber-search-remove", function() {
+  
+  $(document).on("click", ".mylist-vtubers--delete", function() {
     $(this)
       .parent()
       .remove();
@@ -78,8 +103,6 @@ $(document).on('turbolinks:load', function() {
     }, function() {
     $(this ).css('background-color', '');
     });
-  
- 
 
   $(".leftbar-detail--section").hover(function() {
     $(this).css('background-color', '#f8f8ff');

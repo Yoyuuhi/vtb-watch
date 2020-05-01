@@ -1,9 +1,9 @@
-= form_for mylist, url: new_user_mylist_path do |f|
+= form_for mylist, url: new_user_mylist_path, data: { remote: false }, :html => {:class => "form-new-mylist"} do |f|
   .mylist-form__errors
     %h2 10件のエラーが発生しました
     %ul
       %li nameを入力してください
-  .chat-group-form__field
+  .mylist-form__field
     .mylist-form__field--left
       = f.label :name, class: 'mylist-form__label'
     .mylist-form__field--right
@@ -13,27 +13,26 @@
     .mylist-form__field--left
       %label.mylist-form__label{:for => "mylist_vtuberを検索"} vtuberを検索
     .mylist-form__field--right
-      .mylist-form__search.clearfix
-        %input#mylist-form__input{:placeholder => "追加したいvtuber情報（名前、Twitter、会社名）を入力してください", :type => "text"}
-      #vtuber-search-result
-
+      %input.mylist-form__input#mylist-form__input{:placeholder => "追加したいvtuber情報（名前、Twitter、会社名）を入力してください", :type => "text"}/
+    #vtuber-search-results
 
   .mylist-form__field.clearfix
     .mylist-form__field--left
       %label.mylist-form__label{:for => "mylist_vtuber"} mylistにあるvtuber
     
     .mylist-form__field--right
-      #mylist-vtubers.js-add-vtuber
+      #mylist-vtubers
         - mylist.vtubers.each do |vtuber|
-          .mylist-vtuber.clearfix.js-vtuber
+          .mylist-vtubers
             %input{name: "mylist[vtuber_ids][]", type: "hidden", value: vtuber.id}
-            %p.mylist-vtuber__name
-              = vtuber.name 
-            %a.mylist-vtuber__btn--remove.js-remove-btn
+            .mylist-vtubers--name
+              = vtuber.name
+            .mylist-vtubers--twitter
+              @
+              = vtuber.twitter
+            .mylist-vtubers--company
+              = vtuber.company
+            .mylist-vtubers--delete{data: {vtuber: {id: vtuber.id, name: vtuber.name}}}
               削除
-
-
-  .mylist-form__field.clearfix
-    .mylist-form__field--left
-    .mylist-form__field--right
-      = f.submit class: 'mylist-form__action-btn'
+  .mylist-form__field-bottom
+    = f.submit class: 'mylist-form__action-btn'

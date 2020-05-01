@@ -10,7 +10,7 @@ h1 {
 }
 h2 {
   margin-bottom: 10px;
-  color: #f05050;
+  color: #38aef0;
   font-size: 14px;
 }
 
@@ -25,8 +25,6 @@ li {
   padding: 0;
   font-size: 13px;
 }
-
-
 
 .mylist-form {
   width: 980px;
@@ -55,6 +53,7 @@ li {
     line-height: 30px;
     padding: 10px 15px;
     box-sizing: border-box;
+    position: relative;
   }
   &__action-btn {
     display: inline-block;
@@ -110,3 +109,107 @@ li {
   }
 }
 
+.mylist-form__field-bottom {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.vtuber-search-result:hover {
+  background-color: #f8f8ff;
+}
+
+.vtuber-search-result {
+  height: 40px;
+  width: 650px;
+  width: 100%;
+  
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  border-top: solid 1px #787878;
+  border-bottom: solid 1px #787878;
+  &--name {
+    margin-left: 20px;
+    width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &--twitter {
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 20px;
+  }
+  &--company {
+    width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 20px;
+  }
+  &--add {
+    margin-left: 30px;
+    color:  #38aef0;
+    cursor: pointer;
+  }
+}
+
+.mylist-vtubers:hover {
+  background-color: #f8f8ff;
+}
+
+.mylist-vtubers {
+  height: 40px;
+  width: 650px;
+  width: 100%;
+  
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  border-top: solid 1px #787878;
+  border-bottom: solid 1px #787878;
+  &--name {
+    margin-left: 20px;
+    width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &--twitter {
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 20px;
+  }
+  &--company {
+    width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 20px;
+  }
+  &--delete {
+    margin-left: 30px;
+    color:  red;
+    cursor: pointer;
+  }
+}
+
+#vtuber-search-results {
+  max-height: 300px;
+  overflow-y: scroll;
+  position: relative;
+  width: 70%;
+  left: 30%;
+}
+
+#mylist-vtubers {
+  max-height: 300px;
+  overflow-y: scroll;
+  position: relative;
+  margin-bottom: 30px;
+}
