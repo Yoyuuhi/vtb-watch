@@ -5,7 +5,7 @@
         = icon('fas', 'home', class: 'leftbar--section--icon')
       .leftbar--section--text
         ホーム
-  .leftbar--section
+  .leftbar--section{data: {turbolinks: "false"}}
     = link_to new_user_mylist_path(current_user.id) do
       .leftbar--section--icon
         = icon('fas', 'folder-plus', class: 'leftbar--section--icon')
@@ -30,7 +30,7 @@
           = icon('fas', 'folder-open', class: 'leftbar--menu--icon')
           .leftbar-detail--text
             = mylist.name
-  .leftbar-detail--section
+  .leftbar-detail--section{data: {turbolinks: "false"}}
     = link_to new_user_mylist_path(current_user.id), class: "links" do
       = icon('fas', 'folder-plus', class: 'leftbar--menu--icon')
       .leftbar-detail--text

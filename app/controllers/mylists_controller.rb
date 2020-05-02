@@ -10,15 +10,14 @@ class MylistsController < ApplicationController
   def create
     @mylist = Mylist.new(mylist_params)
     if @mylist.save
-      redirect_to root_path
-      # , notice: 'マイリストを作成しました'
+      redirect_to root_path, notice: 'マイリストを作成しました'
     else
       render :new
     end
   end
 
   def edit
-    @mylist = Mylist.find(params[:id])
+    @mylist = Mylist.includes(:vtubers).find(params[:id])
   end
 
   def update
@@ -62,7 +61,7 @@ class MylistsController < ApplicationController
   def destroy
     @mylist = Mylist.find(params[:id])
     @mylist.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: 'マイリストを削除しました'
   end
 
   private

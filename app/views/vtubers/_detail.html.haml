@@ -7,10 +7,10 @@
     .sort-channel--name
       = @vtuber.channelTitle
     .sort-channel--channel
-      = link_to "https://www.youtube.com/channel/#{@vtuber.channel}", class: "sort-channel--channel" do
+      = link_to "https://www.youtube.com/channel/#{@vtuber.channel}", class: "sort-channel--channel", target: :_blank do
         = icon('fab', 'youtube')
     .sort-channel--twitter
-      = link_to "https://twitter.com/#{@vtuber.twitter}", class: "sort-channel--twitter" do
+      = link_to "https://twitter.com/#{@vtuber.twitter}", class: "sort-channel--twitter", target: :_blank do
         = icon('fab', 'twitter')
     .add-to-mylist
       = icon('fas', 'user-plus', class: 'add-to-mylist')

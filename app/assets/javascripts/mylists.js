@@ -155,5 +155,15 @@ $(document).on('turbolinks:load', function() {
     $(".detail--box__top__right-menu", this ).css('display', 'inline');
     }, function() {
     $(".detail--box__top__right-menu", this ).css('display', 'none');
+    $(".detail--box__top-confirm", this).css('display', 'none');
+    });
+  
+  $(".video-box").on("click", ".detail--box__top__right-menu--delete", function() {
+    parent = $(this).parent();
+    $(".detail--box__top-confirm", parent).css('display', 'inline');
+    });
+
+  $(".video-box").on("click", ".detail--box__top-confirm__no", function() {
+    $(".detail--box__top-confirm").css('display', 'none');
     });
 });

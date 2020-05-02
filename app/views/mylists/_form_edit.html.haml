@@ -1,8 +1,10 @@
-= form_for mylist, url: new_user_mylist_path, data: { remote: false }, :html => {:class => "form-new-mylist"} do |f|
-  .mylist-form__errors
-    %h2 10件のエラーが発生しました
-    %ul
-      %li nameを入力してください
+= form_for mylist, url: user_mylist_path, data: { remote: false }, :html => {:class => "form-new-mylist"} do |f|
+  - if mylist.errors.any?
+    .mylist-form__errors
+      %h2= "#{mylist.errors.full_messages.count}件のエラーが発生しました。"
+      %ul
+        - mylist.errors.full_messages.each do |message|
+          %li= message
   .mylist-form__field
     .mylist-form__field--left
       = f.label :name, class: 'mylist-form__label'
@@ -31,7 +33,10 @@
               @
               = vtuber.twitter
             .mylist-vtubers--company
-              = vtuber.company
+              -if vtuber.company.name == nil then
+                = vtuber.company
+              - else
+                = vtuber.company.name
             .mylist-vtubers--delete{data: {vtuber: {id: vtuber.id, name: vtuber.name}}}
               削除
   .mylist-form__field-bottom

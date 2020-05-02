@@ -18,10 +18,18 @@
                 .detail--box__top__right-menu--edit
                   = icon('fas', 'pencil-alt', class: 'mylist_menu_icon')
                   編集
-              = link_to user_mylist_path(current_user, id: mylist.id), method: :delete do
-                .detail--box__top__right-menu--delete
-                  = icon('fas', 'trash', class: 'mylist_menu_icon')
-                  削除
+              .detail--box__top__right-menu--delete
+                = icon('fas', 'trash', class: 'mylist_menu_icon')
+                削除
+              .detail--box__top-confirm
+                .detail--box__top-confirm__text
+                  削除しますか？
+                .detail--box__top-confirm__confirm
+                  = link_to user_mylist_path(current_user, id: mylist.id), method: :delete do
+                    .detail--box__top-confirm__yes
+                      はい
+                  .detail--box__top-confirm__no
+                    いいえ
           .detail--box__bottom
             .detail--box__bottom__name
               = mylist.name

@@ -89,6 +89,7 @@ a {
     display: flex;
     justify-content: center;
     color: white;
+    cursor: pointer;
   }
 }
 
@@ -97,4 +98,34 @@ a {
   align-items: center;
   margin-right: 10px;
   color: white;
+}
+
+.detail--box__top-confirm {
+  width: 210px;
+  height: 118px;
+  background-color: rgba(95, 83, 83, 0.81);
+  z-index: 4;
+  position: absolute;
+  color: white;
+  padding-top: 25px;
+  left: -118px;
+  top: 0;
+  display: none;
+  &__text {
+    display: flex;
+    justify-content: center;
+  }
+  &__confirm {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  &__yes {
+    margin-right: 40px;
+    cursor: pointer;
+    color: white;
+  }
+  &__no {
+    cursor: pointer;
+  }
 }

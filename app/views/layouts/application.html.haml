@@ -11,3 +11,5 @@
   %body
     = render 'layouts/notifications'
     = yield
+    - if content_for?(:body_attributes)
+      = yield

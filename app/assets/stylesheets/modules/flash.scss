@@ -1,13 +1,35 @@
 .notification {
+  display: flex;
+  z-index: 5;
+  position: fixed;
+  bottom: 10%;
+  left: 5%;
+  animation: fadeOut 5s linear forwards;
   .notice {
-    background-color: $light_blue;
+    background-color: #787878;
     color: $white;
-    text-align: center;
+    height: 50px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .alert {
-    background-color: $alert_orange;
+    background-color: #787878;
     color: $white;
-    text-align: center;
+    height: 50px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+}
+
+@keyframes fadeOut {
+  0%  { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; transform: translateY(0px);}
+  99% { opacity: 0; transform: translateY(-30px);}
+  100% { opacity: 0; }
 }
