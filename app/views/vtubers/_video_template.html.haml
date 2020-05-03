@@ -1,14 +1,19 @@
+-# mylist#show画面に表示する動画ブロック内容
 .video-box
   .video-box--video
     = link_to "https://www.youtube.com/watch?v=#{video.videoId}", class: "video-box--name", target: :_blank do
       = image_tag(src= "#{video.cover}", class: "image", height:"118", width: "210")
+    -# 動作が重くなるため、当初予定のiframeをコメントアウト、今後再起用可能
     -# %iframe#player{frameborder: "0", height:"118", src: "https://www.youtube.com/embed/#{video.videoId}", type: "text/html", width: "210"}
+  -# 動画名はYouTubeへリンクする
   .video-box--name
     = link_to "https://www.youtube.com/watch?v=#{video.videoId}", class: "video-box--name", target: :_blank do
       = video.name
+  -# チャンネル名はYouTubeチャンネルへリンクする
   .video-box--channel
     = link_to "https://www.youtube.com/channel/#{video.vtuber.channel}", class: "video-box--channel", target: :_blank do
       = video.vtuber.channelTitle
+  -# 動画の状態を「配信済」、「ライブ」、「公開予定」三種類分けて表示する
   .video-box--status
     - if video.scheduledStartTime == nil then
       = video.publishedAt.strftime("%Y.%m.%d %H:%M")

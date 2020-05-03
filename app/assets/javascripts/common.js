@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function() {
+  // vtuber#showのようなtweetを表示する場合とそれ以外の場合の動画ブロック幅制御
   if ($(".tweet").length != 0) {
     $(".video-boxes-all").css('width', 'calc(100% - 200px)');
     $(".video-boxes-onair").css('width', 'calc(100% - 200px)');
@@ -9,7 +10,7 @@ $(document).on('turbolinks:load', function() {
     $(".video-boxes-planned").css('width', '100%');
   }
   
-
+  // ヘッダー左の矢印をクリックするとメニューの詳細画面を表示する
   $(".headbar-icon").on("click", function() {
     $(".search").css('visibility', 'hidden');
     if ($(".leftbar-detail").is(":hidden")) {
@@ -28,6 +29,7 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
+  // 左側のメニューにある検索ボタンをクリックすると検索画面を表示する
   $("#vtuber-search, #vtuber-search-detail").on("click", function() {
     if ($(".leftbar-detail").is(":hidden")) {
       $(".search").css('left', '80px');

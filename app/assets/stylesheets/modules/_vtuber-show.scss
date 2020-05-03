@@ -1,24 +1,22 @@
+// vtuber#show用設定
 .vtuber--name {
   display: flex;
-  color: #787878;
+  color: $gray_1;
   font-size: 1.5em;
   align-items: center;
   &--text {
     margin-left: 5px;
   }
 }
-
 .channel-banner {
   width: 100%;
 }
-
 .channel-icon {
   height: 80px;
   border-radius: 40px;
   margin-left: 50px;
   margin-right: 10px;
 }
-
 .sort-channel {
   background-color: white;
   height: 120px;
@@ -39,21 +37,21 @@
     display: flex;
     align-items: center;
     font-size: 1.5em;
-    color: #FF0000;
+    color: $youtube_red;
     margin-right: 10px;
   }
   &--twitter {
     display: flex;
     align-items: center;
     font-size: 1.5em;
-    color: #00acee;
+    color: $twitter_blue;
     margin-right: 10px;
   }
   &--all {
     display: flex;
     align-items: center;
     margin-right: 10px;
-    border-bottom: solid #787878 3px;
+    border-bottom: solid $gray_1 3px;
     cursor: pointer;
   }
   &--onair {
@@ -89,6 +87,7 @@
   margin-top: 20px;
 }
 
+// vtuberをmylistに追加する画面設定
 .add-to-mylist {
   margin-right: 30px;
   display: flex;
@@ -110,7 +109,6 @@
   background-color: rgba(0,0,0,0.7);
   &--form {
     background-color: white;
-    // height: 290px;
     width: 260px;
     position: fixed;
     top:50%;
@@ -166,7 +164,7 @@
 .icon-before {
   width: 22px;
   height: 22px;
-  border: 2px solid #787878;
+  border: 2px solid $gray_1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,7 +206,7 @@ input[type="checkbox"]:checked + .checked__icon {
   right: -130px;
   display: flex;
   align-items: center;
-  color: #787878;
+  color: $gray_1;
 }
 
 input[type="checkbox"] {

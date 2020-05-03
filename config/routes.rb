@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post '/users/:id/mylists/new' => 'mylists#create'
   root "mylists#index"
   resources :users, only: [:edit, :update] do
-    resources :mylists, only: [:index, :new, :create, :edit, :update, :show, :destroy]
+    resources :mylists
   end
-  resources :vtubers, only: [:index, :show, :new, :create, :edit, :update]
+  resources :vtubers, only: [:index, :show]
 end

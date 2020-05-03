@@ -1,3 +1,5 @@
+-# vtuber#show画面の左側メニュー
+-# 左側メニュー（細）
 .leftbar
   .leftbar--section
     = link_to user_mylists_path(current_user.id) do
@@ -17,12 +19,14 @@
     .leftbar--section--text
       vtuber検索
 
+-# 左側メニュー（太）
 .leftbar-detail
   .leftbar-detail--section
     = link_to user_mylists_path(current_user.id), class: "links" do
       = icon('fas', 'home', class: 'leftbar--menu--icon')
       .leftbar-detail--text
         ホーム
+  -# ユーザーが所有するmylistを表示する
   .leftbar-detail--mylist
     - @mylists.each do |mylist|
       .leftbar-detail--section

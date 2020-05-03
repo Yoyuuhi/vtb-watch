@@ -1,20 +1,28 @@
+-# vtuber#show、vtuberが所有する動画を表示する画面
 .detail
+  -# vtuberのYouTubeチャンネルバナー
   .banner
     = image_tag(src= "#{@vtuber.banner}", class: "channel-banner")
   .sort-channel
+    -# vtuberのYouTubeチャンネルアイコン
     .sort-channel--icon
       = image_tag(src= "#{@vtuber.icon}", class: "channel-icon")
+    -# vtuberのYouTubeチャンネル名
     .sort-channel--name
       = @vtuber.channelTitle
+    -# YouTubeへリンクする
     .sort-channel--channel
       = link_to "https://www.youtube.com/channel/#{@vtuber.channel}", class: "sort-channel--channel", target: :_blank do
         = icon('fab', 'youtube')
+    -# Twitterへリンクする
     .sort-channel--twitter
       = link_to "https://twitter.com/#{@vtuber.twitter}", class: "sort-channel--twitter", target: :_blank do
         = icon('fab', 'twitter')
+    -# 現在のvtuberをmylistに追加する
     .add-to-mylist
       = icon('fas', 'user-plus', class: 'add-to-mylist')
 
+    -# 「All」,「ライブ配信中」,「公開予定」動画を表示するボタン
     .sort--all
       All
     .sort--onair
@@ -22,11 +30,14 @@
     .sort--planned
       公開予定
 
+  -# vtuberが所有する動画
   .contents
+    -# All
     .video-boxes-all
       - @videos_all_page.each do |video|
         = render partial: 'video_template', locals: { video: video }
 
+    -# ライブ配信中
     .video-boxes-onair
       - @videos_onair.each do |video|
         = render partial: 'video_template', locals: { video: video }
@@ -34,6 +45,7 @@
         .novideo-notice
           このチャンネルにはライブ配信中の動画がありません
 
+    -# 公開予定
     .video-boxes-planned
       - @videos_planned.each do |video|
         = render partial: 'video_template', locals: { video: video }
@@ -41,10 +53,12 @@
         .novideo-notice
           このチャンネルには公開予定の動画がありません
 
+    -# vtuberの最新tweet
     .tweet
       %a{class: "twitter-timeline", "data-width": "250", "data-height": "400", href: "https://twitter.com/#{@vtuber.twitter}?ref_src=twsrc%5Etfw"}
       %script{:async => "", :await => "", :src => "https://platform.twitter.com/widgets.js"}
   
+  -# ページ番号
   .pagination-all
     = paginate(@videos_all_page)
   .pagination-onair

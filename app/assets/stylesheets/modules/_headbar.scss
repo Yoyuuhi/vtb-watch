@@ -1,3 +1,4 @@
+// ヘッダー用設定
 .headbar {
   width: 100vw;
   height: 60px;
@@ -29,35 +30,32 @@
     float:left;
   }
 }
-
 .menu_icon {
   font-size: 1.5em;
-  color: #787878;
+  color: $gray_1;
 }
-
 .user_name {
   text-decoration: none;
-  color: #787878;
+  color: $gray_1;
 }
-
 .log_out {
   text-decoration: none;
   margin: 0 30px;
   color: white;
   display: flex;
   align-items: center;
-  color: #787878;
+  color: $gray_1;
 }
-
 .logout-icon {
   font-size: 1.5em;
   margin-left: 10px;
-  color: #787878;
+  color: $gray_1;
 }
 
+// ヘッダー中心に表示されるmylist名
 .mylist--name {
   display: flex;
-  color: #787878;
+  color: $gray_1;
   font-size: 1.5em;
   align-items: center;
   &--text {

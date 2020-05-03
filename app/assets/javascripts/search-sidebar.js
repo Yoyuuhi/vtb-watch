@@ -1,4 +1,6 @@
+// 左側のメニューにある検索機能
 $(document).on('turbolinks:load', function() {
+  // 検索結果を表示する関数
   function SearchVtuberSide(vtuber) {
     let html = `
     <a href="/vtubers/${vtuber.id}" class="search--form--result-a">
@@ -18,6 +20,7 @@ $(document).on('turbolinks:load', function() {
     $("#search--form--result").append(html);
   }
 
+  // 検索結果がないことを表示する関数
   function SearchNoVtuberSide() {
     let html = `
       vtuberが見つかりません
@@ -25,6 +28,7 @@ $(document).on('turbolinks:load', function() {
     $("#search--form--result").append(html);
   }
 
+  // 検索フォームへの入力が終わるとインクリメンタルサーチを行う
   $("#search--form--input").on("keyup", function() {
     let input = $("#search--form--input").val();
     $.ajax({
@@ -51,10 +55,12 @@ $(document).on('turbolinks:load', function() {
       });
   });
 
+  // 検索画面右上のバツをクリックすると検索画面を非表示する
   $(".search--form--close__icon").on("click", function(e) {
     $(".search").css('visibility', 'hidden');
   })
 
+  // 検索画面以外のbody contentをクリックすると検索画面を非表示する
   $(".search").click(function(event) {
     if(!$(event.target).closest('.search--form').length) {
       if($('.search').css('visibility') == 'visible') {

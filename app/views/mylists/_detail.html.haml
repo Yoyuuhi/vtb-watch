@@ -1,9 +1,11 @@
+-# mylist#index画面、各mylistを表示、編集・削除可能
 .detail
   .video-boxes-all
     - @mylists.each do |mylist|
       = link_to user_mylist_path(current_user, mylist.id) do
         .video-box
           .detail--box__top
+            -# mylistカバー：mylistにあるvtuberのiconをランダムで表示
             .detail--box__top__image
               = image_tag(src= "#{mylist.vtubers.order("RAND()").first.icon}", class: "image")
             .detail--box__top__right
@@ -21,6 +23,7 @@
               .detail--box__top__right-menu--delete
                 = icon('fas', 'trash', class: 'mylist_menu_icon')
                 削除
+              -# 「削除」をクリックした場合確認画面を表示する
               .detail--box__top-confirm
                 .detail--box__top-confirm__text
                   削除しますか？
@@ -36,5 +39,3 @@
             .detail--box__bottom__date
               Last updated:
               = mylist.updated_at.strftime("%Y.%m.%d %H:%M")
-      
-

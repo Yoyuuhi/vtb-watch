@@ -1,31 +1,4 @@
-* {
-  box-sizing: border-box;
-}
-
-h1 {
-  letter-spacing: 2px;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-}
-h2 {
-  margin-bottom: 10px;
-  color: #38aef0;
-  font-size: 14px;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-li {
-  margin: 0;
-  padding: 0;
-  font-size: 13px;
-}
-
+// mylist作成、編集フォーム
 .mylist-form {
   width: 980px;
   margin: 60px auto;
@@ -83,42 +56,7 @@ li {
   }
 }
 
-.mylist-vtuber {
-  padding: 0 15px;
-  line-height: 50px;
-  font-size: 14px;
-  border-bottom: 1px solid #ddd;
-  &:after {
-    content: "";
-    clear: both;
-    display: block;
-  }
-  &__name {
-    float: left;
-  }
-  &__btn {
-    float: right;
-    display: inline-block;
-    cursor: pointer;
-    &--add {
-      color: #38aef0;
-    }
-    &--remove {
-      color: #f05050;
-    }
-  }
-}
-
-.mylist-form__field-bottom {
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.vtuber-search-result:hover {
-  background-color: #f8f8ff;
-}
-
+// mylist作成、編集フォームにおいて検索結果のvtuberリスト
 .vtuber-search-result {
   height: 40px;
   width: 650px;
@@ -127,8 +65,8 @@ li {
   display: flex;
   align-items: center;
   margin-top: 20px;
-  border-top: solid 1px #787878;
-  border-bottom: solid 1px #787878;
+  border-top: solid 1px $gray_1;
+  border-bottom: solid 1px $gray_1;
   &--name {
     margin-left: 20px;
     width: 140px;
@@ -152,15 +90,19 @@ li {
   }
   &--add {
     margin-left: 30px;
-    color:  #38aef0;
+    color:  $light_blue;
     cursor: pointer;
   }
 }
-
-.mylist-vtubers:hover {
-  background-color: #f8f8ff;
+#vtuber-search-results {
+  max-height: 300px;
+  overflow-y: scroll;
+  position: relative;
+  width: 70%;
+  left: 30%;
 }
 
+// mylist作成、編集フォームにおいてmylistにあるvtuberリスト
 .mylist-vtubers {
   height: 40px;
   width: 650px;
@@ -169,8 +111,8 @@ li {
   display: flex;
   align-items: center;
   margin-top: 20px;
-  border-top: solid 1px #787878;
-  border-bottom: solid 1px #787878;
+  border-top: solid 1px $gray_1;
+  border-bottom: solid 1px $gray_1;
   &--name {
     margin-left: 20px;
     width: 140px;
@@ -198,18 +140,24 @@ li {
     cursor: pointer;
   }
 }
-
-#vtuber-search-results {
-  max-height: 300px;
-  overflow-y: scroll;
-  position: relative;
-  width: 70%;
-  left: 30%;
-}
-
 #mylist-vtubers {
   max-height: 300px;
   overflow-y: scroll;
   position: relative;
   margin-bottom: 30px;
+}
+
+// mylist作成、編集フォームにおいてのsubmitボタン
+.mylist-form__field-bottom {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+// mylist作成、編集フォームにおいてhover効果
+.vtuber-search-result:hover {
+  background-color: $hover;
+}
+.mylist-vtubers:hover {
+  background-color: $hover;
 }

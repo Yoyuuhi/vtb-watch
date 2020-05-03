@@ -1,3 +1,4 @@
+// mylist#index, mylist#show, vtuber#showのbody部分
 .detail {
   margin-top: 60px;
   background-color: #f5f5f5;
@@ -62,18 +63,16 @@
   }
 }
 
+// mylistやvideoなどのカバー画像
 .image {
   height: 118px;
 }
 
-a {
-  text-decoration: none;
-}
-
+// mylistの編集、削除メニュー
 .detail--box__top__right-menu {
   width: 92px;
   height: 118px;
-  background-color: #787878;
+  background-color: $gray_1;
   z-index: 3;
   position: absolute;
   left: 118px;
@@ -92,7 +91,6 @@ a {
     cursor: pointer;
   }
 }
-
 .mylist_menu_icon {
   display: flex;
   align-items: center;
@@ -100,6 +98,7 @@ a {
   color: white;
 }
 
+// mylistの削除時の確認
 .detail--box__top-confirm {
   width: 210px;
   height: 118px;

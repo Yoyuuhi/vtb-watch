@@ -1,3 +1,4 @@
+// noticification設定
 .notification {
   display: flex;
   z-index: 5;
@@ -9,7 +10,7 @@
     background-color: #787878;
     color: $white;
     height: 50px;
-    width: 280px;
+    width: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,13 +20,14 @@
     background-color: #787878;
     color: $white;
     height: 50px;
-    width: 280px;
+    width: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 }
 
+// noticificationのフェードアウト設定
 @keyframes fadeOut {
   0%  { opacity: 0; }
   10% { opacity: 1; }

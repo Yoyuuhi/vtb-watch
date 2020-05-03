@@ -1,3 +1,5 @@
+-# mylist編集フォーム
+-# mylistにerrors保存した場合その内容を表示する
 = form_for mylist, url: new_user_mylist_path(user_id: current_user.id), data: { remote: false }, :html => {:class => "form-new-mylist"} do |f|
   - if mylist.errors.any?
     .mylist-form__errors
@@ -5,12 +7,15 @@
       %ul
         - mylist.errors.full_messages.each do |message|
           %li= message
+
+  -# mylist名前入力フォーム
   .mylist-form__field
     .mylist-form__field--left
       = f.label :name, class: 'mylist-form__label'
     .mylist-form__field--right
       = f.text_field :name, class: 'mylist_name mylist-form__input', placeholder: 'mylist名を入力してください'
 
+  -# vtuberを検索するフォーム
   .mylist-form__field
     .mylist-form__field--left
       %label.mylist-form__label{:for => "mylist_vtuberを検索"} vtuberを検索
@@ -18,10 +23,10 @@
       %input.mylist-form__input#mylist-form__input{:placeholder => "追加したいvtuber情報（名前、Twitter、会社名）を入力してください", :type => "text"}/
     #vtuber-search-results
 
+  -# mylistに登録しようとするvtuberを表示するフォーム
   .mylist-form__field.clearfix
     .mylist-form__field--left
       %label.mylist-form__label{:for => "mylist_vtuber"} mylistにあるvtuber
-    
     .mylist-form__field--right
       #mylist-vtubers
         - mylist.vtubers.each do |vtuber|
@@ -39,5 +44,7 @@
                 = vtuber.company.name
             .mylist-vtubers--delete{data: {vtuber: {id: vtuber.id, name: vtuber.name}}}
               削除
+
+  -# submitボタン
   .mylist-form__field-bottom
     = f.submit class: 'mylist-form__action-btn'

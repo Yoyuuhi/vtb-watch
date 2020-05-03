@@ -1,3 +1,4 @@
+# インクリメンタルサーチ用jbuilder
 json.array! @vtubers do |vtuber|
   json.id vtuber.id
   json.name vtuber.name
