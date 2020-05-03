@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200423142459) do
+ActiveRecord::Schema.define(version: 20200503140042) do
 
   create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name",       null: false
@@ -29,11 +29,10 @@ ActiveRecord::Schema.define(version: 20200423142459) do
   end
 
   create_table "mylists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name",                     null: false
-    t.text     "cover",      limit: 65535
+    t.string   "name",       null: false
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "index_mylists_on_name", unique: true, using: :btree
     t.index ["user_id"], name: "index_mylists_on_user_id", using: :btree
   end

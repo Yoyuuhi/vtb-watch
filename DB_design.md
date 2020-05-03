@@ -13,7 +13,6 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|cover|text||
 |user_id|integer|foreign_key: true|
 ### Association
 - has_many :vtubers, through: :mylist_vtubers
@@ -27,6 +26,9 @@
 |twitter|string|null: false, unique: true|
 |company_id|integer|foreign_key: true|
 |channel|string|null: false, unique: true|
+|icon|text||
+|banner|text||
+|channelTitle|string||
 ### Association
 - has_many :mylists, through: :mylist_vtubers
 - has_many :mylists_vtubers
@@ -47,10 +49,12 @@
 |------|----|-------|
 |videoId|string||
 |name|string|null: false|
+|publishedAt|datetime||
 |scheduledStartTime|datetime||
 |actualStartTime|datetime||
 |actualEndTime|datetime||
 |vtuber_id|integer|foreign_key: true|
+|cover|text||
 ### Association
 - belongs_to :vtuber
 
