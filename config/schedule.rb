@@ -25,6 +25,13 @@ set :environment, 'development'
 env :SHELL, "/bin/bash"
 env :PATH, "/usr/local/bin"
 job_type :rake, "export PATH=\"$HOME/.rbenv/bin:$PATH\"; eval \"$(rbenv init -)\"; cd :path && RAILS_ENV=:environment bundle exec rake :task :output"
-every 1.minute do
-  rake 'database:update'
+
+# 一日毎にチャンネル情報更新
+every 1.day, at: '4:30 am' do
+  rake 'database:update_channel'
+end
+
+# 一時間毎に動画情報更新
+every :hour do
+  rake 'database:update_video'
 end

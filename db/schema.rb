@@ -52,16 +52,17 @@ ActiveRecord::Schema.define(version: 20200503140042) do
   end
 
   create_table "videos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "videoId",                          null: false
+    t.string   "videoId",                            null: false
     t.string   "name"
     t.datetime "publishedAt"
     t.datetime "scheduledStartTime"
     t.datetime "actualStartTime"
     t.datetime "actualEndTime"
     t.integer  "vtuber_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.text     "cover",              limit: 65535
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.text     "cover",                limit: 65535
+    t.boolean  "liveStreamingDetails"
     t.index ["vtuber_id"], name: "index_videos_on_vtuber_id", using: :btree
   end
 
