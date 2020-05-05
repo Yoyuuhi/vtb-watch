@@ -50,7 +50,7 @@ test:
 #
 production:
   <<: *default
-  database: vtb-search_production
+  database: vtb-watch_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
