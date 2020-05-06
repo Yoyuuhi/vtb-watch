@@ -22,26 +22,20 @@ namespace :database do
     Vtuber.all.each do |vtuber|
       kind = "channels"
       # チャンネルアイコン情報の取得
-      part = "snippet"
-      url = URI.parse("#{url_temp}/#{kind}?part=#{part}&id=#{vtuber.channel}&key=#{key}")
+      part = "snippet, brandingSettings"
+      fields = "items(snippet(thumbnails(medium(url)), title), brandingSettings(image(bannerImageUrl)))"
+      url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&id=#{vtuber.channel}&key=#{key}")
       hash = API_request(url)
       
       # アイコンのリンク先を保存
       vtuber.icon = hash['items'][0]['snippet']['thumbnails']['medium']['url']
       # チャンネル名を保存
       vtuber.channelTitle = hash['items'][0]['snippet']['title']
-      vtuber.save
-
-      # チャンネルバナー情報の取得
-      part = "brandingSettings"
-      url = URI.parse("#{url_temp}/#{kind}?part=#{part}&id=#{vtuber.channel}&key=#{key}")
-      hash = API_request(url)
-      
       # バナーのリンク先を保存
       vtuber.banner = hash['items'][0]['brandingSettings']['image']['bannerImageUrl']
-
-      puts "succeed!"
+      vtuber.save
     end
+    puts "succeed!"
   end
 
   # 動画情報更新（更新頻度高い）
@@ -56,9 +50,10 @@ namespace :database do
       # チャンネル最新動画情報の取得
       kind = "search"
       part = "snippet"
+      fields = "items(id(videoId), snippet(title, publishedAt, thumbnails(medium(url))))"
       maxResults = "1" # 各チャンネル毎回取得する最新動画の数
       order = "date" # 最新の動画を取得する
-      url = URI.parse("#{url_temp}/#{kind}?part=#{part}&channelId=#{vtuber.channel}&key=#{key}&maxResults=#{maxResults}&order=#{order}")
+      url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&channelId=#{vtuber.channel}&key=#{key}&maxResults=#{maxResults}&order=#{order}")
       hash = API_request(url)
 
       items = hash['items']
@@ -84,10 +79,11 @@ namespace :database do
     # 生放送情報の取得
     kind = "videos"
     part = "liveStreamingDetails"
+    fields = "items(liveStreamingDetails(actualStartTime, actualEndTime, scheduledStartTime))"
     Video.all.each do |video|
       # 生放送ではない（liveStreamingDetailsがFalse）と生放送終了（actualEndTimeが存在する）場合APIを叩かない
       unless video.liveStreamingDetails == False || video.actualEndTime != nil
-        url = URI.parse("#{url_temp}/#{kind}?part=#{part}&id=#{video.videoId}&key=#{key}")
+        url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&id=#{video.videoId}&key=#{key}")
         hash = API_request(url)
 
         # 生放送時間情報取得
