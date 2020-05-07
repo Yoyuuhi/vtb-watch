@@ -22,8 +22,8 @@ namespace :database do
     Vtuber.all.each do |vtuber|
       kind = "channels"
       # チャンネルアイコン情報の取得
-      part = "snippet, brandingSettings"
-      fields = "items(snippet(thumbnails(medium(url)), title), brandingSettings(image(bannerImageUrl)))"
+      part = "snippet,brandingSettings"
+      fields = "items(snippet(thumbnails(medium(url)),title),brandingSettings(image(bannerImageUrl)))"
       url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&id=#{vtuber.channel}&key=#{key}")
       hash = API_request(url)
       
@@ -47,26 +47,26 @@ namespace :database do
     # end
 
     Vtuber.all.each do |vtuber|
-      # チャンネル最新動画情報の取得
-      kind = "search"
+      # チャンネル最新動画情報（放送・アップロード済み）の取得
+      kind = "playlistItems"
       part = "snippet"
-      fields = "items(id(videoId), snippet(title, publishedAt, thumbnails(medium(url))))"
+      fields = "items(snippet(resourceId(videoId),title,publishedAt,thumbnails(medium(url))))"
       maxResults = "1" # 各チャンネル毎回取得する最新動画の数
       order = "date" # 最新の動画を取得する
-      url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&channelId=#{vtuber.channel}&key=#{key}&maxResults=#{maxResults}&order=#{order}")
+      url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&playlistId=#{vtuber.channel.gsub(/^UC/,'UU')}&key=#{key}&maxResults=#{maxResults}&order=#{order}")
       hash = API_request(url)
 
       items = hash['items']
       items.each do |item|
         # vtuberのチャンネルに新しいマイリストが作られた場合その情報がsnippetに含まれ、'videoId'がないため保存しようとするとエラーが発生する
-        if item['id']['videoId'] != nil then
+        if item['snippet']['resourceId']['videoId'] != nil then
           # videoIdによってcreateとupdateを分ける
-          if Video.find_by(videoId: item['id']['videoId']) == nil then
+          if Video.find_by(videoId: item['snippet']['resourceId']['videoId']) == nil then
             video = Video.new
           else
-            video = Video.find_by(videoId: item['id']['videoId'])
+            video = Video.find_by(videoId: item['snippet']['resourceId']['videoId'])
           end
-          video.videoId = item['id']['videoId']
+          video.videoId = item['snippet']['resourceId']['videoId']
           video.name = item['snippet']['title']
           video.publishedAt = item['snippet']['publishedAt']
           video.vtuber_id = vtuber.id.to_s
@@ -74,15 +74,42 @@ namespace :database do
           video.save
         end
       end
+
+      # チャンネル最新動画情報（生放送予定・中）のvideoId取得
+      ## 燃費の悪いsearch:listを捨ててAPIの割り当てを消耗しない方法にしました！（ドヤ）
+      ## Googleさん、live_stream情報に関して不親切すぎません？
+      url = "https://www.youtube.com/embed/live_stream?channel=#{vtuber.channel}"
+      content = Net::HTTP.get_response(URI.parse(url)).entity
+      match = content.match(/watch\?.+/)[0]
+      videoId = match.delete("watch?v=").delete("\">")
+      if Video.find_by(videoId: videoId) == nil then
+        video = Video.new
+      else
+        video = Video.find_by(videoId: videoId)
+      end
+      video.videoId = videoId
+      video.vtuber_id = vtuber.id.to_s
+
+      # 取得した生放送idを使って名前やカバーなどを取得する
+      kind = "videos"
+      part = "snippet"
+      fields = "items(snippet(title,publishedAt,thumbnails(medium(url))))"
+      maxResults = "1" # 各チャンネル毎回取得する最新動画の数
+      url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&id=#{videoId}&key=#{key}&maxResults=#{maxResults}")
+      hash = API_request(url)
+      video.name = item['snippet']['title']
+      video.publishedAt = item['snippet']['publishedAt']
+      video.cover = item['snippet']['thumbnails']['medium']['url']
+      video.save
     end
 
     # 生放送情報の取得
     kind = "videos"
     part = "liveStreamingDetails"
-    fields = "items(liveStreamingDetails(actualStartTime, actualEndTime, scheduledStartTime))"
+    fields = "items(liveStreamingDetails(actualStartTime,actualEndTime,scheduledStartTime))"
     Video.all.each do |video|
       # 生放送ではない（liveStreamingDetailsがFalse）と生放送終了（actualEndTimeが存在する）場合APIを叩かない
-      unless video.liveStreamingDetails == False || video.actualEndTime != nil
+      unless video.liveStreamingDetails != nil || video.actualEndTime != nil
         url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&id=#{video.videoId}&key=#{key}")
         hash = API_request(url)
 
