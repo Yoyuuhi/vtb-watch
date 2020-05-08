@@ -113,7 +113,9 @@ namespace :database do
         end
       end
     end
+  end
 
+  task :update_liveSchedule => :environment do
     # 生放送情報の取得
     kind = "videos"
     part = "liveStreamingDetails"
