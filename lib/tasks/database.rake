@@ -127,7 +127,16 @@ namespace :database do
         hash = API_request(url)
         unless hash == nil
           # 生放送時間情報取得
-          unless hash['items'][0]['liveStreamingDetails'] == nil
+          # めっちゃ昔のライブ配信に対するリクエストの返しに論外が来たー（混乱）。それを回避するためのコード
+          if hash['items'] == nil
+            video.liveStreamingDetails = false
+          # {"items"=>[{}]}もあるのか？バリエーションいいね(ry
+          elsif hash['items'] == [{}]
+            video.liveStreamingDetails = false
+          # {"items"=>[]}出たー！
+          elsif hash['items'] == []
+            video.liveStreamingDetails = false
+          elsif hash['items'][0]['liveStreamingDetails'] != nil
             video.actualStartTime = hash['items'][0]['liveStreamingDetails']['actualStartTime']
             video.actualEndTime = hash['items'][0]['liveStreamingDetails']['actualEndTime']
             video.scheduledStartTime = hash['items'][0]['liveStreamingDetails']['scheduledStartTime']

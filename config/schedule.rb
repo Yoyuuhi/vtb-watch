@@ -35,3 +35,8 @@ end
 every :hour do
   rake 'database:update_video'
 end
+
+# 30分毎に生放送時間情報更新
+every :hour do
+  rake 'database:update_liveSchedule'
+end
