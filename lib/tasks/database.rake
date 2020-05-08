@@ -85,8 +85,8 @@ namespace :database do
       content = Net::HTTP.get_response(URI.parse(url)).entity
       unless content.match(/watch\?.+/) == nil
         match = content.match(/watch\?.+/)[0]
+        videoId = match.sub("watch?v=","").sub("\">","")
       end
-      videoId = match.sub("watch?v=","").sub("\">","")
       if Video.find_by(videoId: videoId) == nil then
         video = Video.new
       else
