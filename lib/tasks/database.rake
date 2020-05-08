@@ -35,7 +35,6 @@ namespace :database do
       vtuber.banner = hash['items'][0]['brandingSettings']['image']['bannerImageUrl']
       vtuber.save
     end
-    puts "succeed!"
   end
 
   # 動画情報更新（更新頻度高い）
@@ -81,26 +80,32 @@ namespace :database do
       url = "https://www.youtube.com/embed/live_stream?channel=#{vtuber.channel}"
       content = Net::HTTP.get_response(URI.parse(url)).entity
       match = content.match(/watch\?.+/)[0]
-      videoId = match.delete("watch?v=").delete("\">")
+      videoId = match.sub("watch?v=","").sub("\">","")
       if Video.find_by(videoId: videoId) == nil then
         video = Video.new
       else
         video = Video.find_by(videoId: videoId)
       end
-      video.videoId = videoId
-      video.vtuber_id = vtuber.id.to_s
+      
+      unless videoId == nil
+        video.videoId = videoId
+        video.vtuber_id = vtuber.id.to_s
 
-      # 取得した生放送idを使って名前やカバーなどを取得する
-      kind = "videos"
-      part = "snippet"
-      fields = "items(snippet(title,publishedAt,thumbnails(medium(url))))"
-      maxResults = "1" # 各チャンネル毎回取得する最新動画の数
-      url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&id=#{videoId}&key=#{key}&maxResults=#{maxResults}")
-      hash = API_request(url)
-      video.name = item['snippet']['title']
-      video.publishedAt = item['snippet']['publishedAt']
-      video.cover = item['snippet']['thumbnails']['medium']['url']
-      video.save
+        # 取得した生放送idを使って名前やカバーなどを取得する
+        kind = "videos"
+        part = "snippet"
+        fields = "items(snippet(title,publishedAt,thumbnails(medium(url))))"
+        maxResults = "1"
+        url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&id=#{videoId}&key=#{key}&maxResults=#{maxResults}")
+        hash = API_request(url)
+        items = hash['items'][0]
+        unless items == nil
+          video.name = items['snippet']['title']
+          video.publishedAt = items['snippet']['publishedAt']
+          video.cover = items['snippet']['thumbnails']['medium']['url']
+          video.save
+        end
+      end
     end
 
     # 生放送情報の取得
@@ -125,6 +130,5 @@ namespace :database do
         video.save
       end
     end
-    puts "succeed!"
   end
 end
