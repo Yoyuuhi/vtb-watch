@@ -83,7 +83,9 @@ namespace :database do
       ## Googleさん、live_stream情報に関して不親切すぎません？
       url = "https://www.youtube.com/embed/live_stream?channel=#{vtuber.channel}"
       content = Net::HTTP.get_response(URI.parse(url)).entity
-      match = content.match(/watch\?.+/)[0]
+      unless content.match(/watch\?.+/) == nil
+        match = content.match(/watch\?.+/)[0]
+      end
       videoId = match.sub("watch?v=","").sub("\">","")
       if Video.find_by(videoId: videoId) == nil then
         video = Video.new
