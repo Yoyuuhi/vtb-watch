@@ -27,13 +27,15 @@ namespace :database do
       url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&id=#{vtuber.channel}&key=#{key}")
       hash = API_request(url)
       
-      # アイコンのリンク先を保存
-      vtuber.icon = hash['items'][0]['snippet']['thumbnails']['medium']['url']
-      # チャンネル名を保存
-      vtuber.channelTitle = hash['items'][0]['snippet']['title']
-      # バナーのリンク先を保存
-      vtuber.banner = hash['items'][0]['brandingSettings']['image']['bannerImageUrl']
-      vtuber.save
+      unless hash == nil
+        # アイコンのリンク先を保存
+        vtuber.icon = hash['items'][0]['snippet']['thumbnails']['medium']['url']
+        # チャンネル名を保存
+        vtuber.channelTitle = hash['items'][0]['snippet']['title']
+        # バナーのリンク先を保存
+        vtuber.banner = hash['items'][0]['brandingSettings']['image']['bannerImageUrl']
+        vtuber.save
+      end
     end
   end
 
@@ -56,21 +58,23 @@ namespace :database do
       hash = API_request(url)
 
       items = hash['items']
-      items.each do |item|
-        # vtuberのチャンネルに新しいマイリストが作られた場合その情報がsnippetに含まれ、'videoId'がないため保存しようとするとエラーが発生する
-        if item['snippet']['resourceId']['videoId'] != nil then
-          # videoIdによってcreateとupdateを分ける
-          if Video.find_by(videoId: item['snippet']['resourceId']['videoId']) == nil then
-            video = Video.new
-          else
-            video = Video.find_by(videoId: item['snippet']['resourceId']['videoId'])
+      unless hash == nil
+        items.each do |item|
+          # vtuberのチャンネルに新しいマイリストが作られた場合その情報がsnippetに含まれ、'videoId'がないため保存しようとするとエラーが発生する
+          if item['snippet']['resourceId']['videoId'] != nil then
+            # videoIdによってcreateとupdateを分ける
+            if Video.find_by(videoId: item['snippet']['resourceId']['videoId']) == nil then
+              video = Video.new
+            else
+              video = Video.find_by(videoId: item['snippet']['resourceId']['videoId'])
+            end
+            video.videoId = item['snippet']['resourceId']['videoId']
+            video.name = item['snippet']['title']
+            video.publishedAt = item['snippet']['publishedAt']
+            video.vtuber_id = vtuber.id.to_s
+            video.cover = item['snippet']['thumbnails']['medium']['url']
+            video.save
           end
-          video.videoId = item['snippet']['resourceId']['videoId']
-          video.name = item['snippet']['title']
-          video.publishedAt = item['snippet']['publishedAt']
-          video.vtuber_id = vtuber.id.to_s
-          video.cover = item['snippet']['thumbnails']['medium']['url']
-          video.save
         end
       end
 
@@ -98,8 +102,8 @@ namespace :database do
         maxResults = "1"
         url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&id=#{videoId}&key=#{key}&maxResults=#{maxResults}")
         hash = API_request(url)
-        items = hash['items'][0]
-        unless items == nil
+        unless hash == nil
+          items = hash['items'][0]
           video.name = items['snippet']['title']
           video.publishedAt = items['snippet']['publishedAt']
           video.cover = items['snippet']['thumbnails']['medium']['url']
@@ -117,17 +121,18 @@ namespace :database do
       unless video.liveStreamingDetails != nil || video.actualEndTime != nil
         url = URI.parse("#{url_temp}/#{kind}?part=#{part}&fields=#{fields}&id=#{video.videoId}&key=#{key}")
         hash = API_request(url)
-
-        # 生放送時間情報取得
-        unless hash['items'][0]['liveStreamingDetails'] == nil
-          video.actualStartTime = hash['items'][0]['liveStreamingDetails']['actualStartTime']
-          video.actualEndTime = hash['items'][0]['liveStreamingDetails']['actualEndTime']
-          video.scheduledStartTime = hash['items'][0]['liveStreamingDetails']['scheduledStartTime']
-        else
-          # APIが返してきたliveStreamingDetailsが空の場合データベースでliveStreamingDetails = Falseと記録する
-          video.liveStreamingDetails = False
+        unless hash == nil
+          # 生放送時間情報取得
+          unless hash['items'][0]['liveStreamingDetails'] == nil
+            video.actualStartTime = hash['items'][0]['liveStreamingDetails']['actualStartTime']
+            video.actualEndTime = hash['items'][0]['liveStreamingDetails']['actualEndTime']
+            video.scheduledStartTime = hash['items'][0]['liveStreamingDetails']['scheduledStartTime']
+          else
+            # APIが返してきたliveStreamingDetailsが空の場合データベースでliveStreamingDetails = Falseと記録する
+            video.liveStreamingDetails = False
+          end
+          video.save
         end
-        video.save
       end
     end
   end
