@@ -22,7 +22,7 @@
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 set :output, '/var/www/vtb-watch/log/crontab.log'
 set :environment, 'production'
-env :SHELL, "/var/www/vtb-watch/bin/bash"
+env :SHELL, "/var/www/vtb-watch/bin"
 env :PATH, "/var/www/vtb-watch"
 job_type :rake, "export PATH=\"$HOME/.rbenv/bin:$PATH\"; eval \"$(rbenv init -)\"; cd :path && RAILS_ENV=:environment bundle exec rake :task :output"
 
