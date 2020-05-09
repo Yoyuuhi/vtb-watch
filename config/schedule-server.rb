@@ -21,7 +21,7 @@
 
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 set :output, 'log/crontab.log'
-set :environment, 'development'
+set :environment, 'production'
 env :SHELL, "/bin/bash"
 env :PATH, "/usr/local/bin"
 job_type :rake, "export PATH=\"$HOME/.rbenv/bin:$PATH\"; eval \"$(rbenv init -)\"; cd :path && RAILS_ENV=:environment bundle exec rake :task :output"
