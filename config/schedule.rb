@@ -37,6 +37,6 @@ every :hour do
 end
 
 # 30分毎に生放送時間情報更新
-every :hour do
+every 30.minute do
   rake 'database:update_liveSchedule'
 end

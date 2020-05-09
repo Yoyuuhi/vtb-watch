@@ -1,0 +1,33 @@
+// 動画を埋め込むiframe関連
+.iframe {
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  background-color: rgba(0,0,0,0.7);
+  &--close {
+    display: flex;
+    align-items: center;
+    margin-left: calc(100vw - 70px);
+    height: 80px;
+    cursor: pointer;
+    &__icon {
+      color: white;
+      font-size: 2em;
+    }
+  }
+  &--video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 80px);
+    width: 100%;
+    padding-bottom: 80px;
+  }
+}
+
+#player {
+  height: 100%;
+  width: 80%;
+}

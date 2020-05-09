@@ -3,12 +3,16 @@
   height: 226px;
   width: 210px;
   margin-right: 30px;
+  &--video {
+    cursor: pointer;
+  }
   &--name {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
     color: black;
+    cursor: pointer;
   }
   &--channel {
     font-size: 12px;

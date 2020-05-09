@@ -31,16 +31,14 @@ $(document).on('turbolinks:load', function() {
 
   // 左側のメニューにある検索ボタンをクリックすると検索画面を表示する
   $("#vtuber-search, #vtuber-search-detail").on("click", function() {
+    $("#search--form--result").empty();
+    $("#search--form--input").val('');
+    $(".search").css('visibility', 'visible');
+    $("#search--form--input").focus()
     if ($(".leftbar-detail").is(":hidden")) {
       $(".search").css('left', '80px');
-      $("#search--form--result").empty();
-      $("#search--form--input").val('');
-      $(".search").css('visibility', 'visible');
     } else {
       $(".search").css('left', '200px');
-      $("#search--form--result").empty();
-      $("#search--form--input").val('');
-      $(".search").css('visibility', 'visible');
     }
   });
 })
