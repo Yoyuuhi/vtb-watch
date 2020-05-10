@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update] do
     resources :mylists
   end
-  resources :vtubers, only: [:index, :show]
+  resources :vtubers, only: [:index, :update, :show]
 end

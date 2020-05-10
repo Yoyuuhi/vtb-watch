@@ -14,6 +14,12 @@ class VtubersController < ApplicationController
     end
   end
 
+  # vtuberとmylist対応関係をアップデートするメソッド
+  def update
+    @vtuber = Vtuber.find(params[:id])
+    @vtuber.update(check_params)
+  end
+
   def show
     @vtuber = Vtuber.find(params[:id])
     @videos = @vtuber.videos.order(publishedAt: "DESC")
@@ -31,4 +37,7 @@ class VtubersController < ApplicationController
     @companies = Company.pluck('name')
   end
 
+  def check_params
+    params.require(:vtuber).permit(:id, mylist_ids: [])
+  end
 end
