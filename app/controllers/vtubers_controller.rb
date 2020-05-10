@@ -19,7 +19,7 @@ class VtubersController < ApplicationController
     @videos = @vtuber.videos.order(publishedAt: "DESC")
     @videos_all_page = @videos.page(params[:page]).per(10)
     @videos_onair = @videos.where.not(actualStartTime: nil).where(actualEndTime: nil).page(params[:page]).per(10)
-    @videos_planned = @videos.where(actualStartTime: nil).where.not(actualEndTime: nil).page(params[:page]).per(10)
+    @videos_planned = @videos.where(actualStartTime: nil).where(liveStreamingDetails: nil).page(params[:page]).per(10)
 
     # サイドバー用ユーザー所有mylist情報
     @mylists = current_user.mylists
