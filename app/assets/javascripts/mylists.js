@@ -102,8 +102,15 @@ $(document).on('turbolinks:load', function() {
     $(this)
       .parent()
       .remove();
-    AddVtuber(vtuberName, vtuberTwitter, vtuberCompany, vtuberId);
-    AddVtuberDB(vtuberId);
+    var vtuber_exist = [];
+    $('input:hidden').each(function() {
+      var r = $(this).val();
+      vtuber_exist.push(r);
+    })
+    if($.inArray(String(vtuberId), vtuber_exist) == -1) {
+      AddVtuber(vtuberName, vtuberTwitter, vtuberCompany, vtuberId);
+      AddVtuberDB(vtuberId);
+    }
   });
   
   // mylist作成・編集フォームで、登録vtuberの「削除」をクリックすると登録vtuberから削除、再検索を行う
