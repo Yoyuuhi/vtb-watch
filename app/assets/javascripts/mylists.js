@@ -69,7 +69,7 @@ $(document).on('turbolinks:load', function() {
     })
     $.ajax({
       type: "GET",
-      url: "/vtubers",
+      url: "/vtubers/searches",
       data: { keyword: input },
       dataType: "json"
     })
@@ -120,7 +120,7 @@ $(document).on('turbolinks:load', function() {
     })
     $.ajax({
       type: "GET",
-      url: "/vtubers",
+      url: "/vtubers/searches",
       data: { keyword: input },
       dataType: "json"
     })

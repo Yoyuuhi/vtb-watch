@@ -33,7 +33,7 @@ $(document).on('turbolinks:load', function() {
     let input = $("#search--form--input").val();
     $.ajax({
       type: "GET",
-      url: "/vtubers",
+      url: "/vtubers/searches",
       data: { keyword: input },
       dataType: "json"
     })
