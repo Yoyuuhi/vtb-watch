@@ -34,10 +34,7 @@ class MylistsController < ApplicationController
 
   def update
     @mylist = Mylist.find(params[:id])
-    if Mylist.where(id: current_user.id, name: @mylist.name) != []
-      flash.now[:alert] = "mylist名は重複しています"
-      render :new
-    elsif @mylist.vtubers == []
+    if @mylist.vtubers == []
       flash.now[:alert] = "vtuberを登録してください"
       render :new
     elsif @mylist.vtubers != @mylist.vtubers.distinct
