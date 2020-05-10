@@ -48,4 +48,18 @@ $(document).on('turbolinks:load', function() {
       }
     }
   });
+
+  // vtuber#sindex画面の横バー
+  $(".vtuber-index").on("click", ".vtuber-index--title", function() {
+    parent = $(this).parent();
+    if ($(".vtuber-boxes", parent).css('display') == "flex") {
+      $(".vtuber-boxes", parent).css("display", "none");
+      $(".vtuber-index-icon-up", parent).css("display", "flex");
+      $(".vtuber-index-icon-down", parent).css("display", "none");
+    } else {
+      $(".vtuber-boxes", parent).css("display", "flex");
+      $(".vtuber-index-icon-up", parent).css("display", "none");
+      $(".vtuber-index-icon-down", parent).css("display", "flex");
+    }
+  })
 });

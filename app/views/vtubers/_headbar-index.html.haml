@@ -1,0 +1,20 @@
+-# vtuber#show画面のヘッダー
+.headbar
+  .headbar-icon
+    .headbar--menu_icon-right
+      = icon('fas', 'chevron-circle-right', class: 'menu_icon')
+    .headbar--menu_icon-left
+      = icon('fas', 'chevron-circle-left', class: 'menu_icon')
+  .headbar--center
+    .vtuber--name
+      = icon('fas', 'user', class: 'vtuber--icon')
+      .vtuber--name--text
+        vtuber一覧
+  .headbar--right
+    .headbar--right__name
+      = link_to edit_user_path(current_user), class: 'user_name' do
+        = current_user.name
+    .headbar--right__logout
+      = link_to destroy_user_session_path, method: :delete, class: 'log_out' do
+        ログアウト
+        = icon('fas', 'sign-out-alt', class: 'logout-icon')

@@ -1,0 +1,17 @@
+-# vtuber#index、vtuber一覧を表示する画面
+.detail
+  .vtuber-index
+    - @companies.each do |company|
+      .company-vtuber
+        .vtuber-index--title
+          = icon('fas', 'chevron-down', class: 'vtuber-index-icon-down')
+          = icon('fas', 'chevron-up', class: 'vtuber-index-icon-up')
+          = company.name
+        .vtuber-boxes
+          - company.vtubers.each do |vtuber|
+            .vtuber-box
+              = link_to vtuber_path(:id => vtuber.id) do
+                .vtuber-box__top
+                  = image_tag(src= "#{vtuber.icon}", class: "vtuber-box__top")
+                .vtuber-box__bottom
+                  = vtuber.name

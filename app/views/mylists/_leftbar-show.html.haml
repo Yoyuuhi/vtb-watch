@@ -14,6 +14,12 @@
       .leftbar--section--text
         mylist作成
   .leftbar--section
+    = link_to vtubers_path(current_user.id) do
+      .leftbar--section--icon
+        = icon('fas', 'user', class: 'leftbar--section--icon')
+      .leftbar--section--text
+        vtuber一覧
+  .leftbar--section
     .leftbar--section--icon{ id: "vtuber-search" }
       = icon('fas', 'search', class: 'leftbar--section--icon')
     .leftbar--section--text
@@ -43,6 +49,11 @@
       = icon('fas', 'folder-plus', class: 'leftbar--menu--icon')
       .leftbar-detail--text
         mylist作成
+  .leftbar-detail--section
+    = link_to vtubers_path(current_user.id), class: "links"  do
+      = icon('fas', 'user', class: 'leftbar--menu--icon')
+      .leftbar-detail--text
+        vtuber一覧
   .leftbar-detail--section{ id: "vtuber-search-detail" }
     = icon('fas', 'search', class: 'leftbar--menu--icon')
     .leftbar-detail--text

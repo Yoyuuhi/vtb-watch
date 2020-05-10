@@ -1,0 +1,43 @@
+.vtuber-boxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.vtuber-box {
+  height: 170px;
+  width: 170px;
+  &__top {
+    display: flex;
+    justify-content: center;
+    border-radius: 59px;
+    height: 118px;
+    margin-bottom: 10px;
+  }
+  &__bottom {
+    display: flex;
+    justify-content: center;
+    color: black;
+  }
+}
+
+.vtuber-index--title {
+  height: 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-top: inset 3px;
+  border-bottom: inset 3px;
+  padding-left: 10px;
+  cursor: pointer;
+  }
+
+.vtuber-index-icon-up {
+  margin-right: 10px;
+  display: none;
+}
+
+.vtuber-index-icon-down {
+  margin-right: 10px;
+}

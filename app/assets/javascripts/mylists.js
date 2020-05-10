@@ -213,6 +213,7 @@ $(document).on('turbolinks:load', function() {
     $(".detail--box__top-confirm").css('display', 'none');
     });
 
+  // mylist#showのAll画面の横バー
   $(".video-days").on("click", ".video-days-title", function() {
     parent = $(this).parent();
     if ($(".video-days-contents", parent).css('display') == "flex") {
