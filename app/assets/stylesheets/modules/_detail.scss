@@ -128,3 +128,9 @@
     cursor: pointer;
   }
 }
+
+.mylist-boxes {
+  height: calc(100vh - 130px);
+  overflow: scroll;
+  display: flex;
+}

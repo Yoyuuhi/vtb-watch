@@ -60,8 +60,24 @@ class MylistsController < ApplicationController
 
     # All
     @videos_all = videos.sort_by! { |a| a[:publishedAt] }.reverse
-    @videos_all_page = Kaminari.paginate_array(@videos_all).page(params[:page]).per(10)
-    
+    videos_all_today = []
+    videos_all_yesterday = []
+    videos_all_2daysAgo = []
+    @videos_all.each do |video|
+      if (video[:created_at].to_s.match(/#{Date.today.to_s}.+/)) 
+        videos_all_today << video
+      end
+      if (video[:created_at].to_s.match(/#{Date.yesterday.to_s}.+/))
+        videos_all_yesterday << video
+      end
+      if (video[:created_at].to_s.match(/#{Date.today.days_ago(2).to_s}.+/)) 
+        videos_all_2daysAgo << video
+      end
+    @videos_all_today = videos_all_today
+    @videos_all_yesterday = videos_all_yesterday
+    @videos_all_2daysAgo = videos_all_2daysAgo
+    end
+
     # ライブ配信中
     videos_onair = []
     @videos_all.each do |video|
@@ -69,7 +85,7 @@ class MylistsController < ApplicationController
         videos_onair << video
       end
     end
-    @videos_onair = Kaminari.paginate_array(videos_onair).page(params[:page]).per(10)
+    @videos_onair = videos_onair
 
     # 公開予定
     videos_planned = []
@@ -78,7 +94,7 @@ class MylistsController < ApplicationController
         videos_planned << video
       end
     end
-    @videos_planned = Kaminari.paginate_array(videos_planned).page(params[:page]).per(10)
+    @videos_planned = videos_planned
   end
 
   def destroy

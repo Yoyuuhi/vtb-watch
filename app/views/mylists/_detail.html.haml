@@ -1,6 +1,6 @@
 -# mylist#index画面、各mylistを表示、編集・削除可能
 .detail
-  .video-boxes-all
+  .mylist-boxes
     - @mylists.each do |mylist|
       = link_to user_mylist_path(current_user, mylist.id) do
         .video-box

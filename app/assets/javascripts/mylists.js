@@ -169,12 +169,9 @@ $(document).on('turbolinks:load', function() {
     $(".sort--all").css('border-bottom', '3px solid rgb(120, 120, 120)')
     $(".sort--onair").css('border-bottom', 'none')
     $(".sort--planned").css('border-bottom', 'none')
-    $(".video-boxes-all").css('display', 'flex')
+    $(".video-boxes-all").css('display', '')
     $(".video-boxes-onair").css('display', 'none')
     $(".video-boxes-planned").css('display', 'none')
-    $(".pagination-all").css('display', 'flex')
-    $(".pagination-onair").css('display', 'none')
-    $(".pagination-planned").css('display', 'none')
   });
 
   // 「ライブ」ボタンをクリックする時ライブ中の動画を表示する
@@ -185,9 +182,6 @@ $(document).on('turbolinks:load', function() {
     $(".video-boxes-all").css('display', 'none')
     $(".video-boxes-onair").css('display', 'flex')
     $(".video-boxes-planned").css('display', 'none')
-    $(".pagination-all").css('display', 'none')
-    $(".pagination-onair").css('display', 'flex')
-    $(".pagination-planned").css('display', 'none')
   });
 
   // 「公開予定」ボタンをクリックする時公開予定の動画を表示する
@@ -198,9 +192,6 @@ $(document).on('turbolinks:load', function() {
     $(".video-boxes-all").css('display', 'none')
     $(".video-boxes-onair").css('display', 'none')
     $(".video-boxes-planned").css('display', 'flex')
-    $(".pagination-all").css('display', 'none')
-    $(".pagination-onair").css('display', 'none')
-    $(".pagination-planned").css('display', 'flex')
   });
 
   // mylist#index, 各mylistをhoverする時編集・削除画面を表示する
@@ -221,4 +212,17 @@ $(document).on('turbolinks:load', function() {
   $(".video-box").on("click", ".detail--box__top-confirm__no", function() {
     $(".detail--box__top-confirm").css('display', 'none');
     });
+
+  $(".video-days").on("click", ".video-days-title", function() {
+    parent = $(this).parent();
+    if ($(".video-days-contents", parent).css('display') == "flex") {
+      $(".video-days-contents", parent).css("display", "none");
+      $(".video-days-icon-up", parent).css("display", "flex");
+      $(".video-days-icon-down", parent).css("display", "none");
+    } else {
+      $(".video-days-contents", parent).css("display", "flex");
+      $(".video-days-icon-up", parent).css("display", "none");
+      $(".video-days-icon-down", parent).css("display", "flex");
+    }
+  })
 });

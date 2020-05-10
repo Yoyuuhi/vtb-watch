@@ -34,8 +34,41 @@
   .contents
     -# All
     .video-boxes-all
-      - @videos_all_page.each do |video|
-        = render partial: 'video_template', locals: { video: video }
+      .video-days
+        .video-days-title
+          = icon('fas', 'chevron-down', class: 'video-days-icon-down')
+          = icon('fas', 'chevron-up', class: 'video-days-icon-up')
+          Today
+        .video-days-contents
+          - if @videos_all_today.length == 0 then
+            動画配信情報ありません
+          - else
+            - @videos_all_today.each do |video|
+              = render partial: 'video_template', locals: { video: video }
+
+      .video-days
+        .video-days-title
+          = icon('fas', 'chevron-down', class: 'video-days-icon-down')
+          = icon('fas', 'chevron-up', class: 'video-days-icon-up')
+          Yesterday
+        .video-days-contents
+          - if @videos_all_yesterday.length == 0 then
+            動画配信情報ありません
+          - else
+            - @videos_all_yesterday.each do |video|
+              = render partial: 'video_template', locals: { video: video }
+
+      .video-days
+        .video-days-title
+          = icon('fas', 'chevron-down', class: 'video-days-icon-down')
+          = icon('fas', 'chevron-up', class: 'video-days-icon-up')
+          Day before yesterday
+        .video-days-contents
+          - if @videos_all_2daysAgo.length == 0 then
+            動画配信情報ありません
+          - else
+            - @videos_all_2daysAgo.each do |video|
+              = render partial: 'video_template', locals: { video: video }
 
     -# ライブ配信中
     .video-boxes-onair
@@ -57,12 +90,3 @@
     .tweet
       %a{class: "twitter-timeline", "data-width": "250", "data-height": "400", href: "https://twitter.com/#{@vtuber.twitter}?ref_src=twsrc%5Etfw"}
       %script{:async => "", :await => "", :src => "https://platform.twitter.com/widgets.js"}
-  
-  -# ページ番号
-  .pagination-all
-    = paginate(@videos_all_page)
-  .pagination-onair
-    = paginate(@videos_onair)
-  .pagination-planned
-    = paginate(@videos_planned)
-
