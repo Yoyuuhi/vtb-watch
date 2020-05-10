@@ -81,7 +81,7 @@ class MylistsController < ApplicationController
     # ライブ配信中
     videos_onair = []
     @videos_all.each do |video|
-      if video.actualStartTime != nil and video.actualEndTime == nil then
+      if video.actualStartTime != nil and video.actualEndTime == nil and video.liveStreamingDetails != false then
         videos_onair << video
       end
     end
@@ -90,7 +90,7 @@ class MylistsController < ApplicationController
     # 公開予定
     videos_planned = []
     @videos_all.each do |video|
-      if video.actualStartTime == nil and video.scheduledStartTime != nil then
+      if video.actualStartTime == nil and video.scheduledStartTime != nil and video.liveStreamingDetails != false then
         videos_planned << video
       end
     end
