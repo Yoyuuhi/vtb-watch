@@ -23,6 +23,7 @@
           から
         .planned
           公開予定
+      - end
     - elsif video.actualEndTime == nil then
       = video.actualStartTime.strftime("%Y.%m.%d %H:%M")
       から
@@ -31,3 +32,4 @@
     - else
       = video.actualEndTime.strftime("%Y.%m.%d %H:%M")
       配信済
+    - end
