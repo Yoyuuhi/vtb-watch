@@ -20,21 +20,19 @@ class VtubersController < ApplicationController
     videos_all_yesterday = []
     videos_all_2daysAgo = []
     videos.each do |video|
-      if (video[:publishedAt].to_s.match(/#{Date.today.to_s}.+/)) 
+      if (video[:publishedAt].to_s.match(/#{Date.today.to_s}.+/)) and video.liveStreamingDetails != false then
         videos_all_today << video
-      end
-      if (video[:publishedAt].to_s.match(/#{Date.yesterday.to_s}.+/))
+      elsif (video[:publishedAt].to_s.match(/#{Date.yesterday.to_s}.+/)) and video.liveStreamingDetails != false then
         videos_all_yesterday << video
-      end
-      if (video[:publishedAt].to_s.match(/#{Date.today.days_ago(2).to_s}.+/)) 
+      elsif (video[:publishedAt].to_s.match(/#{Date.today.days_ago(2).to_s}.+/)) and video.liveStreamingDetails != false then
         videos_all_2daysAgo << video
       end
     @videos_all_today = videos_all_today
     @videos_all_yesterday = videos_all_yesterday
     @videos_all_2daysAgo = videos_all_2daysAgo
     end
-    @videos_onair = videos.where.not(actualStartTime: nil).where(actualEndTime: nil)
-    @videos_planned = videos.where(actualStartTime: nil).where(liveStreamingDetails: nil)
+    @videos_onair = videos.where.not(actualStartTime: nil).where(actualEndTime: nil).where.not(liveStreamingDetails: false)
+    @videos_planned = videos.where(actualStartTime: nil).where(liveStreamingDetails: nil).where.not(liveStreamingDetails: false)
     # サイドバー用ユーザー所有mylist情報
     @mylists = current_user.mylists
     @mylist = Mylist.new

@@ -64,13 +64,13 @@ class MylistsController < ApplicationController
     videos_all_yesterday = []
     videos_all_2daysAgo = []
     @videos_all.each do |video|
-      if (video[:publishedAt].to_s.match(/#{Date.today.to_s}.+/)) 
+      if (video[:publishedAt].to_s.match(/#{Date.today.to_s}.+/)) and video.liveStreamingDetails != false then
         videos_all_today << video
       end
-      if (video[:publishedAt].to_s.match(/#{Date.yesterday.to_s}.+/))
+      if (video[:publishedAt].to_s.match(/#{Date.yesterday.to_s}.+/)) and video.liveStreamingDetails != false then
         videos_all_yesterday << video
       end
-      if (video[:publishedAt].to_s.match(/#{Date.today.days_ago(2).to_s}.+/)) 
+      if (video[:publishedAt].to_s.match(/#{Date.today.days_ago(2).to_s}.+/)) and video.liveStreamingDetails != false then
         videos_all_2daysAgo << video
       end
     @videos_all_today = videos_all_today
