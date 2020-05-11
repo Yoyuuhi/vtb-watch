@@ -86,7 +86,7 @@ class MylistsController < ApplicationController
         videos_onair << video
       end
     end
-    @videos_onair = videos_onair.order(actualStartTime: "DESC")
+    @videos_onair = videos_onair.sort_by! { |a| a[:actualStartTime] }.reverse
 
     # 公開予定
     videos_planned = []
@@ -95,7 +95,8 @@ class MylistsController < ApplicationController
         videos_planned << video
       end
     end
-    @videos_planned = videos_planned.order(scheduledStartTime: "DESC")
+    @videos_planned = videos_planned.sort_by! { |a| a[:scheduledStartTime] }.reverse
+
   end
 
   def destroy
