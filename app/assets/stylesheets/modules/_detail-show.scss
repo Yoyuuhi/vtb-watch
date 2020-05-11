@@ -18,6 +18,10 @@
   &--channel {
     font-size: 12px;
     color: $gray_1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
   }
   &--status {
     font-size: 12px;
