@@ -86,7 +86,7 @@ class MylistsController < ApplicationController
         videos_onair << video
       end
     end
-    @videos_onair = videos_onair
+    @videos_onair = videos_onair.order(actualStartTime: "DESC")
 
     # 公開予定
     videos_planned = []
@@ -95,7 +95,7 @@ class MylistsController < ApplicationController
         videos_planned << video
       end
     end
-    @videos_planned = videos_planned
+    @videos_planned = videos_planned.order(scheduledStartTime: "DESC")
   end
 
   def destroy
