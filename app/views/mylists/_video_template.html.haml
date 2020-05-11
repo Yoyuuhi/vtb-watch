@@ -15,21 +15,19 @@
       = video.vtuber.channelTitle
   -# 動画の状態を「配信済」、「ライブ」、「公開予定」三種類分けて表示する
   .video-box--status
-    - if video.actualStartTime == nil and video.actualEndTime == nil then
-      - if video.scheduledStartTime == nil
-        = video.publishedAt.strftime("%Y.%m.%d %H:%M")
-      - else
+    - if video.actualStartTime == nil and video.actualEndTime == nil and video.scheduledStartTime == nil then
+      = video.publishedAt.strftime("%Y.%m.%d %H:%M")
+    - elsif video.actualEndTime == nil then
+      - if video.actualStartTime == nil then
         = video.scheduledStartTime.strftime("%Y.%m.%d %H:%M")
-          から
+        から
         .planned
           公開予定
-      - end
-    - elsif video.actualEndTime == nil then
-      = video.actualStartTime.strftime("%Y.%m.%d %H:%M")
-      から
-      .onair
-        ライブ
+      - else
+        = video.actualStartTime.strftime("%Y.%m.%d %H:%M")
+        から
+        .onair
+          ライブ
     - else
       = video.actualEndTime.strftime("%Y.%m.%d %H:%M")
       配信済
-    - end
