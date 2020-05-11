@@ -86,16 +86,16 @@ class MylistsController < ApplicationController
         videos_onair << video
       end
     end
-    @videos_onair = videos_onair
+    @videos_onair = videos_onair.sort_by! { |a| a[:actualStartTime] }.reverse
 
     # 公開予定
     videos_planned = []
     @videos_all.each do |video|
-      if video.actualStartTime == nil and video.liveStreamingDetails == nil then
+      if video.scheduledStartTime != nil and video.actualStartTime == nil and video.liveStreamingDetails == nil then
         videos_planned << video
       end
     end
-    @videos_planned = videos_planned
+    @videos_planned = videos_planned.sort_by! { |a| a[:scheduledStartTime] }.reverse
 
   end
 
