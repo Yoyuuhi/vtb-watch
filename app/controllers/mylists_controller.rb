@@ -64,14 +64,15 @@ class MylistsController < ApplicationController
     videos_all_yesterday = []
     videos_all_2daysAgo = []
     @videos_all.each do |video|
-      if (video[:publishedAt].to_s.match(/#{Date.today.to_s}.+/)) and video.liveStreamingDetails != false then
-        videos_all_today << video
-      end
-      if (video[:publishedAt].to_s.match(/#{Date.yesterday.to_s}.+/)) and video.liveStreamingDetails != false then
-        videos_all_yesterday << video
-      end
-      if (video[:publishedAt].to_s.match(/#{Date.today.days_ago(2).to_s}.+/)) and video.liveStreamingDetails != false then
-        videos_all_2daysAgo << video
+      # 削除した生放送を除外する
+      unless video[:scheduledStartTime] != nil and video[:liveStreamingDetails] == false
+        if (video[:publishedAt].to_s.match(/#{Date.today.to_s}.+/)) then
+          videos_all_today << video
+        elsif (video[:publishedAt].to_s.match(/#{Date.yesterday.to_s}.+/)) then
+          videos_all_yesterday << video
+        elsif (video[:publishedAt].to_s.match(/#{Date.today.days_ago(2).to_s}.+/)) then
+          videos_all_2daysAgo << video
+        end
       end
     @videos_all_today = videos_all_today
     @videos_all_yesterday = videos_all_yesterday
@@ -90,7 +91,7 @@ class MylistsController < ApplicationController
     # 公開予定
     videos_planned = []
     @videos_all.each do |video|
-      if video.actualStartTime == nil and video.scheduledStartTime != nil and video.liveStreamingDetails != false then
+      if video.actualStartTime == nil and video.liveStreamingDetails == nil then
         videos_planned << video
       end
     end

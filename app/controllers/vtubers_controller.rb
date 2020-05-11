@@ -20,19 +20,22 @@ class VtubersController < ApplicationController
     videos_all_yesterday = []
     videos_all_2daysAgo = []
     videos.each do |video|
-      if (video[:publishedAt].to_s.match(/#{Date.today.to_s}.+/)) then
-        videos_all_today << video
-      elsif (video[:publishedAt].to_s.match(/#{Date.yesterday.to_s}.+/)) then
-        videos_all_yesterday << video
-      elsif (video[:publishedAt].to_s.match(/#{Date.today.days_ago(2).to_s}.+/)) then
-        videos_all_2daysAgo << video
+      # 削除した生放送を除外する
+      unless video[:scheduledStartTime] != nil and video[:liveStreamingDetails] == false
+        if (video[:publishedAt].to_s.match(/#{Date.today.to_s}.+/)) then
+          videos_all_today << video
+        elsif (video[:publishedAt].to_s.match(/#{Date.yesterday.to_s}.+/)) then
+          videos_all_yesterday << video
+        elsif (video[:publishedAt].to_s.match(/#{Date.today.days_ago(2).to_s}.+/)) then
+          videos_all_2daysAgo << video
+        end
       end
     @videos_all_today = videos_all_today
     @videos_all_yesterday = videos_all_yesterday
     @videos_all_2daysAgo = videos_all_2daysAgo
     end
     @videos_onair = videos.where.not(actualStartTime: nil).where(actualEndTime: nil).where.not(liveStreamingDetails: false)
-    @videos_planned = videos.where(actualStartTime: nil).where(liveStreamingDetails: nil).where.not(liveStreamingDetails: false)
+    @videos_planned = videos.where(actualStartTime: nil).where(liveStreamingDetails: nil)
     # サイドバー用ユーザー所有mylist情報
     @mylists = current_user.mylists
     @mylist = Mylist.new
