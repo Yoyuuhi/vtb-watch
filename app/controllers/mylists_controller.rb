@@ -86,7 +86,7 @@ class MylistsController < ApplicationController
         videos_onair << video
       end
     end
-    @videos_onair = videos_onair.sort_by! { |a| a[:actualStartTime] }.reverse
+    @videos_onair = videos_onair
 
     # 公開予定
     videos_planned = []
@@ -95,7 +95,7 @@ class MylistsController < ApplicationController
         videos_planned << video
       end
     end
-    @videos_planned = videos_planned.sort_by! { |a| a[:scheduledStartTime] }.reverse
+    @videos_planned = videos_planned
 
   end
 
