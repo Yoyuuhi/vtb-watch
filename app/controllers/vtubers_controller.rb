@@ -34,8 +34,8 @@ class VtubersController < ApplicationController
     @videos_all_yesterday = videos_all_yesterday
     @videos_all_2daysAgo = videos_all_2daysAgo
     end
-    @videos_onair = videos.where.not(actualStartTime: nil).where(actualEndTime: nil).where.not(liveStreamingDetails: false).order(actualStartTime: "DESC")
-    @videos_planned = videos.where(actualStartTime: nil).where.not(scheduledStartTime: nil).where(liveStreamingDetails: nil).order(scheduledStartTime: "DESC")
+    @videos_onair = videos.where.not(actualStartTime: nil).where(actualEndTime: nil).where(liveStreamingDetails: nil)
+    @videos_planned = videos.where(actualStartTime: nil).where(liveStreamingDetails: nil)
     # サイドバー用ユーザー所有mylist情報
     @mylists = current_user.mylists
     @mylist = Mylist.new

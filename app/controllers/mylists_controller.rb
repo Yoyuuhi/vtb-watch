@@ -91,11 +91,11 @@ class MylistsController < ApplicationController
     # 公開予定
     videos_planned = []
     @videos_all.each do |video|
-      if video.scheduledStartTime != nil and video.actualStartTime == nil and video.liveStreamingDetails == nil then
+      if video.actualStartTime == nil and video.liveStreamingDetails == nil then
         videos_planned << video
       end
     end
-    @videos_planned = videos_planned.sort_by! { |a| a[:scheduledStartTime] }.reverse
+    @videos_planned = videos_planned
 
   end
 
