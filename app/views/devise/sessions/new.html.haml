@@ -3,6 +3,8 @@
     .account-page__inner--left.account-page__header
       %h2 Log in
       = render "devise/shared/links"
+      = link_to "Forget password", new_user_password_path(resource_name), class: 'btn'
+      %br/
     .account-page__inner--right.user-form
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .field
