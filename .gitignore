@@ -19,3 +19,4 @@
 public/uploads/*
 log/crontab.log
 /.env
+/public/assets/*
