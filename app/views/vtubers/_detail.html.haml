@@ -88,5 +88,5 @@
 
     -# vtuberの最新tweet
     .tweet
-      %a{class: "twitter-timeline", "data-width": "250", "data-height": "400", href: "https://twitter.com/#{@vtuber.twitter}?ref_src=twsrc%5Etfw"}
+      %a{class: "twitter-timeline", "data-width": "250", "data-height": "calc(100vh - 150px)", href: "https://twitter.com/#{@vtuber.twitter}?ref_src=twsrc%5Etfw"}
       %script{:async => "", :await => "", :src => "https://platform.twitter.com/widgets.js"}
