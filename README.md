@@ -39,9 +39,9 @@ $ whenever --update-crontab
 ```
 
 ### パスワード再設定メール自動送信機能について：
-パスワード再設定メール自動送信機能はGmailを使って実装している。そのため、自分で試す場合自動送信用Gmailアカウントを先に取得し、その情報を保存する必要がある。上記の`.env`ファイルに`GMAIL_DEVELOP = '＜Gmailメールアドレス＞'`と`GMAIL_DEVELOP_PASSWORD = '＜Gmailパスワード＞'`に追記すればパスワード再設定メール自動送信機能が使えるようになる。
-（Gmail以外のメールサーバを使う場合`config/environments`の環境対応`.rb`ファイルを編集する必要がある）
+パスワード再設定メール自動送信機能はGmailを使って実装している。そのため、自分で試す場合自動送信用Gmailアカウントを先に取得し、その情報を保存する必要がある。上記の`.env`ファイルに`GMAIL_ACCOUNT = '＜Gmailメールアドレス＞'`と`GMAIL_PASSWORD = '＜Gmailパスワード＞'`に追記すればパスワード再設定メール自動送信機能が使えるようになる。
+（Gmail以外のメールサーバを使う場合`config/environments`にある環境に対応する`＜環境＞.rb`ファイルを編集する必要がある）
 
 ## おまけ
 `config/schedule.rb`を修正し、crontabをアップデートすることでチャンネル・動画データ定期取得の頻度を変えることができるが、申請したYouTube API KEYの毎日使用量の割り当てを気を付けないといけない。
-目安として、テスト用の`schedule-local.rb`の更新頻度の場合、vtubersが40名くらいだと、YouTube API KEYのqueries毎日使用量は10,000弱となる。（無料YouTube API KEYの毎日使用量の割り当ては10,000）
+目安として、テスト用の`schedule-local.rb`の更新頻度の場合、vtubersが40名くらいだと、YouTube API KEYのqueries毎日使用量は9,000上下となる。（無料YouTube API KEYの毎日使用量の割り当ては10,000）
