@@ -4,7 +4,7 @@ class Vtubers::SearchesController < ApplicationController
     @CompanyId = Company.where('name LIKE :KEY', KEY: "%#{params[:keyword]}%").ids
 
     # 名前、twitter、所属会社でvtuberを検索する
-    @vtubers = Vtuber.includes(:company).where('(name LIKE ?) OR (twitter LIKE ?) OR (company_id = ?)', "%#{params[:keyword]}%", "%#{params[:keyword]}%", @CompanyId).limit(10)
+    @vtubers = Vtuber.includes(:company).where('(name LIKE ?) OR (twitter LIKE ?) OR (company_id = ?)', "%#{params[:keyword]}%", "%#{params[:keyword]}%", @CompanyId)
     return @vtubers
     respond_to do |format|
       format.json
