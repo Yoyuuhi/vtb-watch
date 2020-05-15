@@ -136,6 +136,9 @@ namespace :database do
           # {"items"=>[]}出たー！
           elsif hash['items'] == []
             video.liveStreamingDetails = false
+          # オフライン中のストリーム
+          elsif hash['items'][0]['liveStreamingDetails'] == {}
+            video.liveStreamingDetails = false
           elsif hash['items'][0]['liveStreamingDetails'] != nil
             video.actualStartTime = hash['items'][0]['liveStreamingDetails']['actualStartTime']
             video.actualEndTime = hash['items'][0]['liveStreamingDetails']['actualEndTime']
