@@ -140,9 +140,6 @@ namespace :database do
             video.actualStartTime = hash['items'][0]['liveStreamingDetails']['actualStartTime']
             video.actualEndTime = hash['items'][0]['liveStreamingDetails']['actualEndTime']
             video.scheduledStartTime = hash['items'][0]['liveStreamingDetails']['scheduledStartTime']
-          else
-            # APIが返してきたliveStreamingDetailsが空の場合データベースでliveStreamingDetails = Falseと記録する
-            video.liveStreamingDetails = False
           end
           video.save
         end
