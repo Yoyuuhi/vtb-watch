@@ -203,13 +203,13 @@ $(document).on('turbolinks:load', function() {
     });
   
   // mylist#index, 削除ボタンをクリックした時削除確認画面を表示する
-  $(".video-box").on("click", ".detail--box__top__right-menu--delete", function() {
+  $(".detail--box").on("click", ".detail--box__top__right-menu--delete", function() {
     parent = $(this).parent();
     $(".detail--box__top-confirm", parent).css('display', 'inline');
     });
 
   // mylist#index, 削除確認画面の「いいえ」ボタンをクリックした時確認画面を非表示する
-  $(".video-box").on("click", ".detail--box__top-confirm__no", function() {
+  $(".detail--box").on("click", ".detail--box__top-confirm__no", function() {
     $(".detail--box__top-confirm").css('display', 'none');
     });
 

@@ -3,6 +3,7 @@ $(document).on('turbolinks:load', function() {
    $(".add-to--form__footer").on("click", function(e) {
     $(".add-to--form__newmylist").css('display', 'block');
     $(".add-to--form__footer").css('display', 'none');
+    $("#mylist_name").focus();
   })
 
   // vtuber#show, mylistに追加するフォーム, チェックボックス情報変更する度にsubmit
@@ -22,17 +23,24 @@ $(document).on('turbolinks:load', function() {
   // vtuber#show,vtuber#show, mylistに追加するフォーム, 新しいmylistに追加する場合に非同期通信を行う
   $(".new_mylist").on("submit", function(e) {
     e.preventDefault();
-    $(".add-to").css('visibility', 'hidden');
     var formData = new FormData(this);
     var url = $(this).attr('action')
     $.ajax({
       url: url,
       type: "POST",
       data: formData,
-      dataType: 'json',
+      dataType: 'text',
       processData: false,
       contentType: false
     })
+    .done(function() {
+      document.location.reload()
+    })
+    .fail(function(){
+      alert("新しいmylist作成失敗、mylist名を確認してください。\n（mylist名は空や重複にしてはいけません）");
+      $('form')[0].reset();
+      $('.add-to--form__newmylist__btn').prop('disabled', false);
+    });
   })
 
   // vtuber#show, mylistに追加するフォーム, バツをクリックするとフォームを非表示する

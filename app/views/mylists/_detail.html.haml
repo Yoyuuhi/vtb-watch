@@ -3,7 +3,7 @@
   .mylist-boxes
     - @mylists.each do |mylist|
       = link_to user_mylist_path(current_user, mylist.id) do
-        .video-box
+        .detail--box
           .detail--box__top
             -# mylistカバー：mylistにあるvtuberのiconをランダムで表示
             .detail--box__top__image

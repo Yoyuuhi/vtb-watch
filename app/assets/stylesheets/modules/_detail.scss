@@ -4,18 +4,17 @@
   background-color: #f5f5f5;
   width: 100vw;
   min-height: calc(100vh - 100px); 
-  height:auto !important; 
   padding-top: 20px;
   padding-left: 50px;
   padding-right: 50px;
   margin-left: 80px;
-
+  height: calc(100vh - 60px);
+  overflow: scroll;
   z-index: 1;
   &--box {
-    margin-left: 50px;
-    margin-bottom: 50px;
-    width: 210px;
     height: 226px;
+    width: 210px;
+    margin-right: 30px;
     &__top {
       display: flex;
       position: relative;
@@ -130,7 +129,6 @@
 }
 
 .mylist-boxes {
-  height: calc(100vh - 130px);
-  overflow: scroll;
   display: flex;
+  flex-wrap: wrap;
 }
